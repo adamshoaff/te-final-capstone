@@ -2,16 +2,16 @@
   <div class="home">
     <h1>Home</h1>
     <p>You must be authenticated to see this</p>
-    <new-family-form /> 
-    
+    <family-info />
   </div>
 </template>
 
 <script>
-import NewFamilyForm from "@/components/NewFamilyForm.vue";
+//redo all of this
+import FamilyInfo from "@/components/FamilyInfo.vue";
 
 export default {
-  components: { NewFamilyForm },
+  components: { FamilyInfo },
   name: "home",
 };
 </script>
