@@ -1,12 +1,16 @@
 package com.techelevator.dao;
 
+import com.techelevator.model.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
+@Component
 public class JdbcMemberDao implements MemberDao {
 
     private JdbcTemplate jdbcTemplate;
@@ -16,10 +20,10 @@ public class JdbcMemberDao implements MemberDao {
     }
 
     @Override
-    public void addMember(String firstName, String lastName, String memberType) {
+    public void addMember(Member member) {
         String sql = "INSERT INTO our_family (first_name, last_name, member_type)" +
                 " VALUES (?, ?, ?)";
-        jdbcTemplate.update(sql, firstName, lastName, memberType);
+        jdbcTemplate.update(sql, member.getFirstName(), member.getLastName(), member.getMemberType());
     }
 
     @Override
@@ -38,12 +42,21 @@ public class JdbcMemberDao implements MemberDao {
     }
 
     @Override
-    public String getMember(Long memberId) {
-        String sql = "SELECT first_name, last_name, email_address, username, password " +
+    public List<String> getListOfMembers(String username) {
+        List<String> members = new ArrayList<>();
+        String sql = "SELECT first_name, last_name, member_type " +
                 "FROM our_family " +
-                "WHERE member_id = ?";
+                "JOIN users "
+                "WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId);
+        // this will need to join to the user table
+
 
         //Look for map method.
+        return null;
     }
+
+
+
+
 }

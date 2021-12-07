@@ -17,23 +17,23 @@ public class MemberController {
 
     // I think we need a Member model
     @RequestMapping (path = "/{id}", method = RequestMethod.GET)
-    public String getMember(@PathVariable long memberId) throws MemberNotFoundException {
-        return this.memberDao.getMember(memberId);
+    public String getListofMembers(@PathVariable long memberId) throws MemberNotFoundException {
+        return this.memberDao.getListOfMembers(memberId);
     }
 
     @RequestMapping (method = RequestMethod.POST)
     public void addMember(@RequestBody Member memberToSave) {
-        return this.memberDao.addMember(memberToSave);
+        this.memberDao.addMember(memberToSave);
     }
 
     @RequestMapping (path = "/{id}", method = RequestMethod.PUT)
     public void updateMember(@RequestBody Member member) throws MemberNotFoundException {
-        return this.memberDao.updateMember(member);
+       this.memberDao.updateMember(member);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
     public void deleteMember(@PathVariable long memberId) throws MemberNotFoundException {
-        return this.memberDao.deleteMember(memberId);
+        this.memberDao.deleteMember(memberId);
     }
 
 }

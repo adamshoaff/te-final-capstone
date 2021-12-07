@@ -7,6 +7,10 @@ public class Member {
     public String lastName;
     public String memberType;
 
+    public Member () {
+
+    }
+
     public Member(Long memberId, String firstName, String lastName, String memberType) {
         this.memberId = memberId;
         this.firstName = firstName;
@@ -31,7 +35,7 @@ public class Member {
     }
 
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {
@@ -39,7 +43,7 @@ public class Member {
     }
 
     public String getMemberType() {
-        return memberType;
+        return this.memberType;
     }
 
     public void setMemberType(String memberType) {

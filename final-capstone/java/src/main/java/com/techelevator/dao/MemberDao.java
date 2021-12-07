@@ -13,6 +13,6 @@ public interface MemberDao {
 
     void deleteMember(Long memberId);
 
-    String getMember(Long memberId);
+    String getListOfMembers(Long memberId);
 
 }
