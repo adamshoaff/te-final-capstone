@@ -1,27 +1,25 @@
 <template>
   <div>
     <!--v-models go here-->
-    <router-link v-bind:to="{ name: 'add-new-member' }"
-      ><button>Add New Member</button></router-link
-    >
+    <add-new-member />
   </div>
 </template>
 
 <script>
-import FamilyService from '@/services/FamilyService.js';
+//import FamilyService from "@/services/FamilyService.js";
 import AddNewMember from "@/components/AddNewMember.vue";
 export default {
   components: { AddNewMember },
-  name: "add-new-member",
+  name: "family-info",
   data() {
     return {
       //set up blank family object
-    }
+    };
   },
-  methods:
-  retrieveFamily() {
-      //use service here (look up)
-  }
+  // methods:
+  // retrieveFamily() {
+  //     //use service here (look up)
+  // }
 };
 </script>
 
