@@ -7,7 +7,7 @@
 </template>
 
 <script>
-//redo all of this
+
 import FamilyInfo from "@/components/FamilyInfo.vue";
 
 export default {
