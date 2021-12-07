@@ -1,5 +1,6 @@
 <template>
   <form>
+    <!--NO longer a form! Reformat this to look like Family Card mockup-->
     <label for="familyName">Family Name</label>
     <input type="text" name="familyName" id="familyName" />
     <!--new member form-->
