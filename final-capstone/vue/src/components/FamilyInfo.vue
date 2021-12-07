@@ -1,25 +1,31 @@
 <template>
   <div>
-    <!--v-models go here-->
+    <h1>My Family Members</h1>
+    <div class="members" v-for="member in members" v-bind:key="member.id">
+      {{ member.name }}
+    </div>
+   
     <add-new-member />
   </div>
 </template>
 
 <script>
-//import FamilyService from "@/services/FamilyService.js";
+import FamilyService from "@/services/FamilyService.js";
 import AddNewMember from "@/components/AddNewMember.vue";
 export default {
   components: { AddNewMember },
   name: "family-info",
   data() {
     return {
-      //set up blank family object
+      members: [],
     };
   },
-  // methods:
-  // retrieveFamily() {
-  //     //use service here (look up)
-  // }
+  created() {
+    let familyPromise = FamilyService.getFamily();
+    familyPromise.then((response) => {
+      this.members = response.data;
+    });
+  },
 };
 </script>
 

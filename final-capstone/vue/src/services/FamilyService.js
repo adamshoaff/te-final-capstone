@@ -1,9 +1,12 @@
 import axios from 'axios';
-
+const http = axios.create({
+    baseURL: "http://localhost:8080"
+  });
 export default {
 
-    addFamily(family) {
-        return axios.post('/family', family);
+
+    getFamily() {
+        return http.get('/family');
     }
 
     // //get family object here:
