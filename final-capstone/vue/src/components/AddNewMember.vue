@@ -15,7 +15,7 @@
           type="text"
           name="firstName"
           id="firstName"
-          v-modle="newMember.firstName"
+          v-model="newMember.firstName"
         />
       </div>
       <div class="form-element">
@@ -24,7 +24,7 @@
           type="text"
           name="lastName"
           id="lastName"
-          v-modle="newMember.lastName"
+          v-model="newMember.lastName"
         />
       </div>
       <div class="form-element">
@@ -41,13 +41,18 @@
 </template>
 
 <script>
+//members aren't getting added to the table via the form
 import familyService from "@/services/FamilyService.js";
 export default {
   name: "add-new-member",
   data() {
     return {
       showForm: false,
-      newMember: {},
+      newMember: {
+        firstName: "",
+        lastName: "",
+        memberType: "",
+      },
     };
   },
   methods: {

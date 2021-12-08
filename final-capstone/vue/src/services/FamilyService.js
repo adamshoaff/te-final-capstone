@@ -4,8 +4,8 @@ const http = axios.create({
 });
 export default {
 
-    getFamily() {
-        return http.get(`/family/`);
+    getFamily(username) {
+        return http.get(`/family?username=${username}`);
     },
 
     addMember(member) {
