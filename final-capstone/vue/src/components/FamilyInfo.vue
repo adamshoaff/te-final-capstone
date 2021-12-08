@@ -5,7 +5,7 @@
       {{ member.name }}
     </div>
 
-    <add-new-member />
+   
   </div>
 </template>
 
@@ -13,9 +13,9 @@
 
 <script>
 import FamilyService from "@/services/FamilyService.js";
-import AddNewMember from "@/components/AddNewMember.vue";
+
 export default {
-  components: { AddNewMember },
+  
   name: "family-info",
   data() {
     return {

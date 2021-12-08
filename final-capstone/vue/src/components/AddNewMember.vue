@@ -8,7 +8,7 @@
     >
       Create a new Member</a
     >
-    <form v-on:submit.prevent="addMember" v-if="showForm === true">
+    <form v-on:submit.prevent v-if="showForm === true">
       <div class="form-element">
         <label for="firstName">First Name</label>
         <input
@@ -34,8 +34,8 @@
           <option value="child">Child</option>
         </select>
       </div>
-      <input type="submit" value="Save" />
-      <input type="button" value="Cancel" v-on:click.prevent="resetForm" />
+      <button type="submit" v-on:click="addMember()" > Save</button>
+      <button type="button" v-on:click="cancel()">Cancel</button>
     </form>
   </div>
 </template>
@@ -73,6 +73,9 @@ export default {
         .catch((error) => {
           console.error(error);
         });
+    },
+    cancel() {
+this.$router.push("/family")
     },
 
     resetForm() {
