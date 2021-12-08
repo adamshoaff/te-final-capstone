@@ -3,6 +3,8 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Member;
 
+import java.util.List;
+
 public interface MemberDao {
 
     //void addMember(String firstName, String lastName, String memberType);
@@ -13,6 +15,6 @@ public interface MemberDao {
 
     void deleteMember(Long memberId);
 
-    String getListOfMembers(Long memberId);
+    List<Member> getListOfMembers(String username);
 
 }

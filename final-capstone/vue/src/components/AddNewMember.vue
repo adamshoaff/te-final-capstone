@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import familyService from "@/services/FamilyService.js";
 export default {
   name: "add-new-member",
   data() {
@@ -54,6 +55,20 @@ export default {
       this.$store.commit("ADD_NEW_MEMBER", this.newMember);
       this.resetForm();
     },
+
+    addMember() {
+      familyService
+        .addMember(this.newMember)
+        .then((response) => {
+          if (response.status === 201) {
+            this.$router.push("/");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+
     resetForm() {
       this.showForm = false;
       this.NewMember = {};

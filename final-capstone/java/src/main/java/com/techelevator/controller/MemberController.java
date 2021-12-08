@@ -5,7 +5,10 @@ import com.techelevator.model.Member;
 import com.techelevator.model.MemberNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
+@RequestMapping ("/family")
 
 public class MemberController {
 
@@ -16,12 +19,12 @@ public class MemberController {
     }
 
     // I think we need a Member model
-    @RequestMapping (path = "/{id}", method = RequestMethod.GET)
-    public String getListofMembers(@PathVariable long memberId) throws MemberNotFoundException {
-        return this.memberDao.getListOfMembers(memberId);
+    @GetMapping (path = "")
+    public List<Member> getListOfMembers(@RequestParam String username) throws MemberNotFoundException {
+        return this.memberDao.getListOfMembers(username);
     }
 
-    @RequestMapping (method = RequestMethod.POST)
+    @PostMapping (path = "")
     public void addMember(@RequestBody Member memberToSave) {
         this.memberDao.addMember(memberToSave);
     }

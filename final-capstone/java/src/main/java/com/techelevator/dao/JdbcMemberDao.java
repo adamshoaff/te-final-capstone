@@ -21,42 +21,50 @@ public class JdbcMemberDao implements MemberDao {
 
     @Override
     public void addMember(Member member) {
-        String sql = "INSERT INTO our_family (first_name, last_name, member_type)" +
+        String sql = "INSERT INTO members (first_name, last_name, member_type)" +
                 " VALUES (?, ?, ?)";
         jdbcTemplate.update(sql, member.getFirstName(), member.getLastName(), member.getMemberType());
     }
 
     @Override
     public void updateMember(Member updatedMember) {
-        String sql = "UPDATE our_family " +
-                "SET first_name = ?, last_name = ?, member_type = ? " +
-                "WHERE member_id = ?";
+        String sql = "UPDATE members" +
+                " SET first_name = ?, last_name = ?, member_type = ?" +
+                " WHERE member_id = ?";
         jdbcTemplate.update(sql, updatedMember.getFirstName(), updatedMember.getLastName(),
                 updatedMember.getMemberType());
     }
 
     @Override
     public void deleteMember(Long memberId) {
-        String sql = "DELETE FROM our_family WHERE member_id = ?;";
+        String sql = "DELETE FROM members WHERE member_id = ?;";
         jdbcTemplate.update(sql, memberId);
     }
 
     @Override
-    public List<String> getListOfMembers(String username) {
-        List<String> members = new ArrayList<>();
-        String sql = "SELECT first_name, last_name, member_type " +
-                "FROM our_family " +
-                "JOIN users "
-                "WHERE username = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId);
-        // this will need to join to the user table
+    public List<Member> getListOfMembers(String username) {
+        List<Member> members = new ArrayList<>();
+        String sql = "SELECT first_name, last_name, member_type" +
+                " FROM members" +
+                " JOIN users ON members.user_id = users.user_id" +
+                " WHERE username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        while (results.next()) {
+            Member newMember = mapRowToMember(results);
+            members.add(newMember);
+        }
+        return members;
 
-
-        //Look for map method.
-        return null;
     }
 
-
+    private Member mapRowToMember(SqlRowSet results) {
+        Member member = new Member();
+        member.setFirstName(results.getString("first_name"));
+        member.setLastName(results.getString("last_name"));
+        member.setMemberType(results.getString("member_type"));
+        member.setMemberId(results.getLong("member_id"));
+        return member;
+    }
 
 
 }
