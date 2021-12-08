@@ -41,6 +41,11 @@ export default new Vuex.Store({
     },
     ADD_NEW_MEMBER(state, member) {
       state.members.unshift(member);
+    }, 
+    ADD_MEMBERS(state, members) {
+      state.members = members;
     }
+
+
   }
 })

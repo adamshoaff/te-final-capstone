@@ -8,7 +8,7 @@
     >
       Create a new Member</a
     >
-    <form v-on:submit.prevent="addNewMember" v-if="showForm === true">
+    <form v-on:submit.prevent="addMember" v-if="showForm === true">
       <div class="form-element">
         <label for="firstName">First Name</label>
         <input
@@ -66,8 +66,8 @@ export default {
         .addMember(this.newMember)
         .then((response) => {
           if (response.status === 201) {
-            //addNewMember here
-            //this.$router.push("/");
+            this.addNewMember();
+            this.$router.push("/");
           }
         })
         .catch((error) => {
