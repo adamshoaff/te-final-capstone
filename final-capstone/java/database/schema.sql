@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS family;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_member_id;
+DROP SEQUENCE IF EXISTS seq_family_id;
 
 CREATE SEQUENCE seq_user_id
   INCREMENT BY 1
@@ -15,6 +16,13 @@ CREATE SEQUENCE seq_user_id
 CREATE SEQUENCE seq_member_id
   INCREMENT BY 1
   START WITH 101
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE SEQUENCE seq_family_id
+  INCREMENT BY 1
+  START WITH 501
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -36,14 +44,23 @@ CREATE TABLE members (
 );
 
 CREATE TABLE family (
+    family_id int DEFAULT nextval('seq_family_id'::regclass) NOT NULL,
+    family_name varchar(50) NOT NULL,
     user_id int NOT NULL,
-    CONSTRAINT FK_family_user FOREIGN KEY (user_id) REFERENCES users(user_id),
     member_id int NOT NULL,
+    CONSTRAINT PK_family PRIMARY KEY (family_id)
+    CONSTRAINT FK_family_user FOREIGN KEY (user_id) REFERENCES users(user_id),
     CONSTRAINT FK_family_member FOREIGN KEY (member_id) REFERENCES members(member_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
+
+INSERT INTO members (member_id, first_name, last_name, member_type)
+VALUES (101, 'Phil', 'Banks', 'Parent')
+VALUES (102, 'Vivanne', 'Banks', 'Parent')
+VALUES (103, 'Carlton', 'Banks', 'Child')
+
 
 
 COMMIT TRANSACTION;
