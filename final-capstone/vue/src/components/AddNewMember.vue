@@ -66,7 +66,8 @@ export default {
         .addMember(this.newMember)
         .then((response) => {
           if (response.status === 201) {
-            this.$router.push("/");
+            //addNewMember here
+            //this.$router.push("/");
           }
         })
         .catch((error) => {

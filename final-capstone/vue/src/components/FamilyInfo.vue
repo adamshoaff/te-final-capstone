@@ -28,6 +28,8 @@ export default {
     );
     familyPromise.then((response) => {
       this.members = response.data;
+      //need to push this data into the store (look at book)
+      //Vuex
     });
   },
 };
