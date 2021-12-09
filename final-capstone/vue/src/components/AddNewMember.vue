@@ -59,7 +59,7 @@ export default {
       familyService
         .addMember(this.newMember)
         .then((response) => {
-          if (response.status === 201) {
+          if (response.status === 200) {
            // this.addNewMember();
             this.$router.push("/");
           }

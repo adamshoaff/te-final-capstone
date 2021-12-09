@@ -37,19 +37,22 @@ CREATE TABLE users (
 
 CREATE TABLE members (
     member_id int DEFAULT nextval('seq_member_id'::regclass) NOT NULL,
+    user_id   int foreign key
+    family_id  int foreign key
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     member_type varchar(50) NOT NULL,
     CONSTRAINT PK_member PRIMARY KEY (member_id)
+    CONSTRAINT FK_family_member FOREIGN KEY (member_id) REFERENCES members(member_id),
+        CONSTRAINT FK_family_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE family (
     family_id int DEFAULT nextval('seq_family_id'::regclass) NOT NULL,
-    user_id int,
+
     family_name varchar(50) NOT NULL,
-    member_id int NOT NULL,
-    CONSTRAINT FK_family_member FOREIGN KEY (member_id) REFERENCES members(member_id),
-    CONSTRAINT FK_family_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+
+
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
