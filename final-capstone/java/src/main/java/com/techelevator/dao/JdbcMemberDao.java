@@ -46,7 +46,7 @@ public class JdbcMemberDao implements MemberDao {
         List<Member> members = new ArrayList<>();
         String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type" +
                 " FROM members" +
-                " JOIN users ON member.user_id = users.user_id" +
+                " JOIN users ON members.user_id = users.user_id" +
                 " WHERE username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
