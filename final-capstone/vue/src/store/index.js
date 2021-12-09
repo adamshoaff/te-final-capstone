@@ -39,11 +39,14 @@ export default new Vuex.Store({
       state.user = {};
       axios.defaults.headers.common = {};
     },
-    ADD_NEW_MEMBER(state, member) {
-      state.members.unshift(member);
-    }, 
-    ADD_MEMBERS(state, members) {
-      state.members = members;
+    // ADD_NEW_MEMBER(state, member) {
+    //   state.members.unshift(member);
+    // }, 
+    // ADD_MEMBERS(state, members) {
+    //   state.members = members;
+    // }
+    SET_MEMbers(state, data) {
+      state.members = data;
     }
 
 
