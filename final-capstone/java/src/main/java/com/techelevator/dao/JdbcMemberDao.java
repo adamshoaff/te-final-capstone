@@ -31,7 +31,7 @@ public class JdbcMemberDao implements MemberDao {
         String sql = "UPDATE members" +
                 " SET user_id = ?, family_id = ?, first_name = ?, last_name = ?, member_type = ?" +
                 " WHERE member_id = ?";
-        jdbcTemplate.update(sql, updatedMember.getFirstName(), updatedMember.getLastName(),
+        jdbcTemplate.update(sql, updatedMember.getUserId(), updatedMember.getFamilyId(), updatedMember.getFirstName(), updatedMember.getLastName(),
                 updatedMember.getMemberType());
     }
 
