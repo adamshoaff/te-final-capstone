@@ -2,7 +2,10 @@ package com.techelevator.model;
 
 public class Member {
 
+    // (member_id,user_id, family_id, first_name, last_name, member_type)
     public Long memberId;
+    public Long userId;
+    public Long familyId;
     public String firstName;
     public String lastName;
     public String memberType;
@@ -11,8 +14,10 @@ public class Member {
 
     }
 
-    public Member(Long memberId, String firstName, String lastName, String memberType) {
+    public Member(Long memberId, Long userId, Long familyId, String firstName, String lastName, String memberType) {
         this.memberId = memberId;
+        this.userId = userId;
+        this.familyId = familyId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.memberType = memberType;
@@ -26,6 +31,22 @@ public class Member {
         this.memberId = memberId;
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Long getFamilyId() {
+        return familyId;
+    }
+
+    public void setFamilyId(Long familyId) {
+        this.familyId = familyId;
+    }
+
     public String getFirstName() {
         return firstName;
     }
@@ -35,7 +56,7 @@ public class Member {
     }
 
     public String getLastName() {
-        return this.lastName;
+        return lastName;
     }
 
     public void setLastName(String lastName) {
@@ -43,11 +64,10 @@ public class Member {
     }
 
     public String getMemberType() {
-        return this.memberType;
+        return memberType;
     }
 
     public void setMemberType(String memberType) {
         this.memberType = memberType;
     }
-
 }

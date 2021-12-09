@@ -7,7 +7,8 @@ import java.util.List;
 
 public interface MemberDao {
 
-    //void addMember(String firstName, String lastName, String memberType);
+    // (member_id,user_id, family_id, first_name, last_name, member_type)
+
 
     void addMember(Member memberToAdd);
 
