@@ -4,18 +4,15 @@
     <div class="members" v-for="member in members" v-bind:key="member.id">
       {{ member.name }}
     </div>
-
-   
   </div>
 </template>
 
 <!--currently not working: the component is not displaying the members that are in the table-->
 
 <script>
-import FamilyService from "@/services/FamilyService.js";
+import MemberService from "@/services/MemberService.js";
 
 export default {
-  
   name: "family-info",
   data() {
     return {
@@ -23,7 +20,7 @@ export default {
     };
   },
   created() {
-    let familyPromise = FamilyService.getFamily(
+    let familyPromise = MemberService.getMembers(
       this.$store.state.user.username
     );
     familyPromise.then((response) => {

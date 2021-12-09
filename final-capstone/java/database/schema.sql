@@ -58,6 +58,16 @@ INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULi
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
 
+<<<<<<< HEAD
+=======
+INSERT INTO members (member_id, user_id, first_name, last_name, member_type)
+VALUES (101,3, 'Phil', 'Banks', 'Parent'),
+(102, null,'Vivanne', 'Banks', 'Parent'),
+(103,null, 'Carlton', 'Banks', 'Child'),
+(104, 4,'Lorelai', 'Gilmore', 'Parent'),
+(105,null, 'Rory', 'Gilmore', 'Child');
+
+>>>>>>> 22c7bb010eb0e25aff793b58610d2a24abc6c7c3
 INSERT INTO family (family_id, family_name)
 VALUES (501, 'banksfamily'),
 (502,'gilmoregirls');

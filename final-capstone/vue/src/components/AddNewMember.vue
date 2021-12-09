@@ -1,47 +1,44 @@
 <template>
-  
-    <form v-on:submit.prevent >
-      <div class="form-element">
-        <label for="firstName">First Name</label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          v-model="newMember.firstName"
-        />
-      </div>
-      <div class="form-element">
-        <label for="lastName">Last Name</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          v-model="newMember.lastName"
-        />
-      </div>
-      <div class="form-element">
-        <label for="memberType">Member Type:</label>
-        <select id="memberType" v-model="newMember.memberType">
-          <option value="parent">Parent</option>
-          <option value="child">Child</option>
-        </select>
-      </div>
-      <div class="actions">
-      <button type="submit" v-on:click="addMember()" > Save</button>
+  <form v-on:submit.prevent>
+    <div class="form-element">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        name="firstName"
+        id="firstName"
+        v-model="newMember.firstName"
+      />
+    </div>
+    <div class="form-element">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        name="lastName"
+        id="lastName"
+        v-model="newMember.lastName"
+      />
+    </div>
+    <div class="form-element">
+      <label for="memberType">Member Type:</label>
+      <select id="memberType" v-model="newMember.memberType">
+        <option value="parent">Parent</option>
+        <option value="child">Child</option>
+      </select>
+    </div>
+    <div class="actions">
+      <button type="submit" v-on:click="addMember()">Save</button>
       <button type="button" v-on:click="cancel()">Cancel</button>
-      </div>
-    </form>
- 
+    </div>
+  </form>
 </template>
 
 <script>
 //members aren't getting added to the table via the form
-import familyService from "@/services/FamilyService.js";
+import MemberService from "@/services/MemberService.js";
 export default {
   name: "add-new-member",
   data() {
     return {
-      
       newMember: {
         firstName: "",
         lastName: "",
@@ -56,11 +53,10 @@ export default {
     // },
 
     addMember() {
-      familyService
-        .addMember(this.newMember)
+      MemberService.addMember(this.newMember)
         .then((response) => {
           if (response.status === 200) {
-           // this.addNewMember();
+            // this.addNewMember();
             this.$router.push("/");
           }
         })
@@ -69,11 +65,9 @@ export default {
         });
     },
     cancel() {
-this.$router.push("/")
+      this.$router.push("/");
     },
-
-    
-  }
+  },
 };
 </script>
 
