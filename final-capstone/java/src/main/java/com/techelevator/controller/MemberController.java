@@ -18,7 +18,6 @@ public class MemberController {
         this.memberDao = memberDao;
     }
 
-    // I think we need a Member model
     @GetMapping (path = "")
     public List<Member> getListOfMembers(@RequestParam String username) throws MemberNotFoundException {
         return this.memberDao.getListOfMembers(username);
