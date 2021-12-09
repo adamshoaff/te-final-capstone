@@ -37,22 +37,20 @@ CREATE TABLE users (
 
 CREATE TABLE members (
     member_id int DEFAULT nextval('seq_member_id'::regclass) NOT NULL,
-    user_id   int,
-    family_id  int,
+    user_id int,
+    family_id int,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     member_type varchar(50) NOT NULL,
-    CONSTRAINT PK_member PRIMARY KEY (member_id)
-    CONSTRAINT FK_family_member FOREIGN KEY (member_id) REFERENCES members(member_id),
-        CONSTRAINT FK_family_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    CONSTRAINT PK_member PRIMARY KEY (member_id),
+    CONSTRAINT FK_member_family FOREIGN KEY (family_id) REFERENCES family(family_id),
+    CONSTRAINT FK_member_user FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
 CREATE TABLE family (
     family_id int DEFAULT nextval('seq_family_id'::regclass) NOT NULL,
-
     family_name varchar(50) NOT NULL,
-
-
+    CONSTRAINT PK_family PRIMARY KEY (family_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
@@ -60,18 +58,18 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 INSERT INTO users (username,password_hash,role) VALUES ('pbanks','password','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
 
-INSERT INTO members (member_id, first_name, last_name, member_type)
-VALUES (101, 'Phil', 'Banks', 'Parent'),
-(102, 'Vivanne', 'Banks', 'Parent'),
-(103, 'Carlton', 'Banks', 'Child'),
-(104, 'Lorelai', 'Gilmore', 'Parent'),
-(105, 'Rory', 'Gilmore', 'Child');
+INSERT INTO members (member_id,user_id, first_name, last_name, member_type)
+VALUES (101,3, 'Phil', 'Banks', 'Parent'),
+(102, null,'Vivanne', 'Banks', 'Parent'),
+(103,null, 'Carlton', 'Banks', 'Child'),
+(104, 4,'Lorelai', 'Gilmore', 'Parent'),
+(105,null, 'Rory', 'Gilmore', 'Child');
 
-INSERT INTO family (family_id, user_id, family_name, member_id)
-VALUES (501, 3, 'banksfamily', 101),
-(501, null, 'banksfamily', 102),
-(501, null, 'banksfamily', 103),
-(502, 4, 'gilmoregirls', 104),
-(502, null, 'gilmoregirls', 105);
+INSERT INTO family (family_id, family_name)
+VALUES (501, 'banksfamily'),
+(501,'banksfamily'),
+(501,'banksfamily'),
+(502,'gilmoregirls'),
+(502,'gilmoregirls');
 
 COMMIT TRANSACTION;
