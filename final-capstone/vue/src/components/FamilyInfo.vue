@@ -24,7 +24,7 @@ export default {
   },
   created() {
     let familyPromise = FamilyService.getFamily(
-      this.state.$store.currentUser.username
+      this.$store.state.user.username
     );
     familyPromise.then((response) => {
       this.members = response.data;

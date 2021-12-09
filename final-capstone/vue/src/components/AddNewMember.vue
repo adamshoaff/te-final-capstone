@@ -1,14 +1,6 @@
 <template>
-  <div>
-    <a
-      id="show-form-button"
-      href="#"
-      v-if="showForm === false"
-      v-on:click.prevent="showForm = true"
-    >
-      Create a new Member</a
-    >
-    <form v-on:submit.prevent v-if="showForm === true">
+  
+    <form v-on:submit.prevent >
       <div class="form-element">
         <label for="firstName">First Name</label>
         <input
@@ -34,10 +26,12 @@
           <option value="child">Child</option>
         </select>
       </div>
+      <div class="actions">
       <button type="submit" v-on:click="addMember()" > Save</button>
       <button type="button" v-on:click="cancel()">Cancel</button>
+      </div>
     </form>
-  </div>
+ 
 </template>
 
 <script>
@@ -47,7 +41,7 @@ export default {
   name: "add-new-member",
   data() {
     return {
-      showForm: false,
+      
       newMember: {
         firstName: "",
         lastName: "",
@@ -56,17 +50,17 @@ export default {
     };
   },
   methods: {
-    addNewMember() {
-      this.$store.commit("ADD_NEW_MEMBER", this.newMember);
-      this.resetForm();
-    },
+    // addNewMember() {
+    //   this.$store.commit("ADD_NEW_MEMBER", this.newMember);
+    //   this.resetForm();
+    // },
 
     addMember() {
       familyService
         .addMember(this.newMember)
         .then((response) => {
-          if (response.status === 201) {
-            this.addNewMember();
+          if (response.status === 200) {
+           // this.addNewMember();
             this.$router.push("/");
           }
         })
@@ -75,14 +69,11 @@ export default {
         });
     },
     cancel() {
-this.$router.push("/family")
+this.$router.push("/")
     },
 
-    resetForm() {
-      this.showForm = false;
-      this.NewMember = {};
-    },
-  },
+    
+  }
 };
 </script>
 

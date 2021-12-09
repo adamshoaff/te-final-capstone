@@ -6,7 +6,7 @@ import com.techelevator.model.MemberNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin
 @RestController
 @RequestMapping ("/family")
 
@@ -35,8 +35,8 @@ public class MemberController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void deleteMember(@PathVariable long memberId) throws MemberNotFoundException {
-        this.memberDao.deleteMember(memberId);
+    public void deleteMember(@PathVariable long id) throws MemberNotFoundException {
+        this.memberDao.deleteMember(id);
     }
 
 }
