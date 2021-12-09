@@ -33,18 +33,19 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-	CONSTRAINT PK_user PRIMARY KEY (user_id)
+	CONSTRAINT PK_username PRIMARY KEY (username),
+	CONSTRAINT UQ_username UNIQUE (username)
 );
 
 CREATE TABLE family (
     family_id int DEFAULT nextval('seq_family_id'::regclass) NOT NULL,
-    family_name varchar(50) NOT NULL,
-    CONSTRAINT PK_family PRIMARY KEY (family_id)
+    username varchar(50) NOT NULL,
+    CONSTRAINT PK_family PRIMARY KEY (family_id),
+    CONSTRAINT FK_family_username FOREIGN KEY (username) REFERENCES users(username)
 );
 
 CREATE TABLE members (
     member_id int DEFAULT nextval('seq_member_id'::regclass) NOT NULL,
-    user_id int,
     family_id int,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
