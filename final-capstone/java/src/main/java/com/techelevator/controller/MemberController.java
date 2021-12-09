@@ -35,8 +35,8 @@ public class MemberController {
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void deleteMember(@PathVariable long memberId) throws MemberNotFoundException {
-        this.memberDao.deleteMember(memberId);
+    public void deleteMember(@PathVariable long id) throws MemberNotFoundException {
+        this.memberDao.deleteMember(id);
     }
 
 }

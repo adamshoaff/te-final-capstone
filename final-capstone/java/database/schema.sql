@@ -37,8 +37,8 @@ CREATE TABLE users (
 
 CREATE TABLE members (
     member_id int DEFAULT nextval('seq_member_id'::regclass) NOT NULL,
-    user_id   int foreign key
-    family_id  int foreign key
+    user_id   int,
+    family_id  int,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     member_type varchar(50) NOT NULL,
