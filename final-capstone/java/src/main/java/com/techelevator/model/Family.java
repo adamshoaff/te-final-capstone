@@ -4,14 +4,13 @@ public class Family {
 
     private Long familyId;
     private String familyName;
-    private Long memberId;
 
     public Family () {}
 
-    public Family(Long familyId, String familyName, Long memberId) {
+    public Family(Long familyId, String familyName) {
         this.familyId = familyId;
         this.familyName = familyName;
-        this.memberId = memberId;
+
     }
 
     public Long getFamilyId() {
@@ -30,11 +29,4 @@ public class Family {
         this.familyName = familyName;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
 }
