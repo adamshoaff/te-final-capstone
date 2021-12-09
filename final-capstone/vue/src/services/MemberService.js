@@ -4,12 +4,12 @@ const http = axios.create({
 });
 export default {
 
-    getFamily(username) {
-        return http.get(`/family?username=${username}`);
+    getMembers(username) {
+        return http.get(`/member?username=${username}`);
     },
 
     addMember(member) {
-        return http.post(`/family/`, member);
+        return http.post(`/member/create`, member);
     }
 
 

@@ -58,7 +58,7 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 INSERT INTO users (username,password_hash,role) VALUES ('pbanks','password','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
 
-INSERT INTO members (member_id,user_id, first_name, last_name, member_type)
+INSERT INTO members (member_id, user_id, first_name, last_name, member_type)
 VALUES (101,3, 'Phil', 'Banks', 'Parent'),
 (102, null,'Vivanne', 'Banks', 'Parent'),
 (103,null, 'Carlton', 'Banks', 'Child'),

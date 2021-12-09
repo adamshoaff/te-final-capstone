@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @CrossOrigin
 @RestController
-@RequestMapping ("/family")
+@RequestMapping ("/member")
 
 public class MemberController {
 
@@ -24,7 +24,7 @@ public class MemberController {
         return this.memberDao.getListOfMembers(username);
     }
 
-    @PostMapping (path = "")
+    @PostMapping (path = "/create")
     public void addMember(@RequestBody Member memberToSave) {
         this.memberDao.addMember(memberToSave);
     }
