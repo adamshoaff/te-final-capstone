@@ -2,7 +2,8 @@
   <div>
     <h1>My Family Members</h1>
     <div class="members" v-for="member in members" v-bind:key="member.id">
-      {{ member.name }}
+      {{ member.firstName }}
+      {{member.lastName}}
     </div>
   </div>
 </template>

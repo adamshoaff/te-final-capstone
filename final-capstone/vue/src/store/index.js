@@ -45,7 +45,7 @@ export default new Vuex.Store({
     // ADD_MEMBERS(state, members) {
     //   state.members = members;
     // }
-    SET_MEMbers(state, data) {
+    SET_MEMBERS(state, data) {
       state.members = data;
     }
 
