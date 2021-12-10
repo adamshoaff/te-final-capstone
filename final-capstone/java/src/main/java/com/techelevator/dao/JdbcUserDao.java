@@ -69,7 +69,19 @@ public class JdbcUserDao implements UserDao {
         // create user
         String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
         //TODO: Insert user into members table
-        String insertUserIntoMember = "insert into members();";
+        String insertUserIntoMember = "INSERT INTO members();";
+        //member table: member_id, user_id, name, family_Id
+
+        // Annie confusion-induced attempt:
+        // String insertUser = "INSERT INTO users (username, password_hash, role)" +
+        // " VALUES(?, ?, ?) RETURNING user_id;"
+        // Long newId = jdbcTemplate.queryForObject(insertUser, Long.class...need help here
+        // String insertUserIntoMember = "INSERT INTO members(name)" +
+        // " VALUES(?) RETURNING member_id;"
+        // is this the right return?
+
+
+
 
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
