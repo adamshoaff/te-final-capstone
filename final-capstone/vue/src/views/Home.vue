@@ -11,9 +11,15 @@
 
 <script>
 import FamilyInfo from "@/components/FamilyInfo.vue";
+import MemberService from "@/services/MemberService.js";
 
 export default {
   components: { FamilyInfo },
   name: "home",
+  created() {
+    MemberService.getByUsername(this.$store.state.user.username).then((r) => {
+      this.$store.commit("SET_CURRENT_MEMBER", r.data);
+    });
+  },
 };
 </script>

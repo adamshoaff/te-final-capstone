@@ -10,6 +10,10 @@ export default {
 
     addMember(member) {
         return axios.post(`/member/create`, member);
+    },
+
+    getByUsername(username) {
+        return axios.get(`/family?username=${username}`);
     }
 
 

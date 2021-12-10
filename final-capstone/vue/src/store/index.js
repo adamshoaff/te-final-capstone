@@ -18,6 +18,7 @@ if (currentToken != null) {
 
 export default new Vuex.Store({
   state: {
+    currentMember: [],
     members: [],
     token: currentToken || '',
     user: currentUser || {}
@@ -47,7 +48,11 @@ export default new Vuex.Store({
     // }
     SET_MEMBERS(state, data) {
       state.members = data;
+    },
+    SET_CURRENT_MEMBER(state, data) {
+      state.currentMember = data;
     }
+
 
 
   }
