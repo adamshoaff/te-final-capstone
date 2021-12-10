@@ -25,8 +25,8 @@ public class MemberController {
     }
 
     @PostMapping (path = "") // previously this said "/create", I believe Mike said to omit that
-    public void addMember(@RequestBody Member memberToSave) {
-        this.memberDao.addMember(memberToSave);
+    public void addMember(@RequestBody Member memberToSave, @RequestParam String username) {
+        this.memberDao.addMember(memberToSave, username);
     }
 
     @RequestMapping (path = "/{id}", method = RequestMethod.PUT)

@@ -28,6 +28,21 @@ public class JdbcFamilyDao implements FamilyDao {
     }
 
     @Override
+    public Family getByUsername(String username){
+        Family family = null;
+        String sql = "SELECT family.family_id, family_name FROM family" +
+                " JOIN members ON family.family_id = members.family_id"+
+                " JOIN users ON users.user_id = members.user_id WHERE username = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+        if(results.next()){
+            family = mapRowToFamily(results);
+        }
+        return family;
+    }
+
+
+
+    @Override
     public void updateFamily(Family updatedFamily) {
         String sql = "UPDATE family" +
                 " SET family_name = ?" +

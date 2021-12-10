@@ -53,7 +53,7 @@ export default {
     // },
 
     addMember() {
-      MemberService.addMember(this.newMember)
+      MemberService.addMember(this.newMember, this.$store.state.user.username)
         .then((response) => {
           if (response.status === 200) {
             // this.addNewMember();

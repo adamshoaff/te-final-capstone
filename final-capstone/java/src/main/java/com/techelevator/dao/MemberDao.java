@@ -11,7 +11,9 @@ public interface MemberDao {
     // (member_id,user_id, family_id, first_name, last_name, member_type)
 
 
-    Member addMember(Member memberToAdd);
+    Member addMember(Member memberToAdd, String username);
+
+   Member getMember(Long memberId);
 
     void updateMember(Member updatedMember);
 

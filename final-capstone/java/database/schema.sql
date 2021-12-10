@@ -25,7 +25,7 @@ CREATE SEQUENCE seq_family_id
 
 CREATE SEQUENCE seq_member_id
   INCREMENT BY 1
-  START WITH 101
+  START WITH 150
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -74,8 +74,8 @@ CREATE TABLE books (
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
-INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
-INSERT INTO users (username, password_hash, role) VALUES('banksfamily', 'password', 'ROLE_USER');
+INSERT INTO users (username,password_hash,role) VALUES ('gilmore','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
+INSERT INTO users (username, password_hash, role) VALUES('banksfamily', '$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC', 'ROLE_USER');
 
 INSERT INTO family (family_id, family_name)
 VALUES (501, 'banksfamily'),(502,'gilmore'), (503,'admin');
@@ -85,7 +85,7 @@ VALUES (101, 4, 501, 'Phil', 'Banks', 'Parent'),
        (102, null, 501, 'Vivanne', 'Banks', 'Parent'),
        (103, null, 501, 'Carlton', 'Banks', 'Child'),
        (104, 3, 502, 'Lorelai', 'Gilmore', 'Parent'),
-       (105, 3, 502, 'Rory', 'Gilmore', 'Child');
+       (105, null, 502, 'Rory', 'Gilmore', 'Child');
 
 INSERT INTO books (book_id, book_name, author, family_id)
 VALUES (1001, 'Will', 'Will Smith', 501),

@@ -23,10 +23,16 @@ public class JdbcMemberDao implements MemberDao {
 // (member_id, user_id, family_id, first_name, last_name, member_type)
 
     @Override
-    public Member addMember(Member newMember) {
+    public Member addMember(Member newMember, String username) {
+        //get the family id
+        String familyIdSql = "SELECT members.family_id FROM members JOIN users ON members.user_id = users.user_id WHERE username = ?;";
+
+        Long familyId = jdbcTemplate.queryForObject(familyIdSql, Long.class, username);
+
+
         String sql = "INSERT INTO members (family_id, first_name, last_name, member_type)" +
                 " VALUES ( ?, ?, ?, ?) RETURNING member_id";
-        Long newId = jdbcTemplate.queryForObject(sql, Long.class, newMember.getFamilyId(), newMember.getFirstName(), newMember.getLastName(), newMember.getMemberType());
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class, familyId, newMember.getFirstName(), newMember.getLastName(), newMember.getMemberType());
 
         //jdbcTemplate.update(sql, member.getFamilyId(), member.getFirstName(), member.getLastName(), member.getMemberType());
         return getMember(newId);
@@ -50,13 +56,15 @@ public class JdbcMemberDao implements MemberDao {
     }
 
     @Override
+    //TODO: add column names instead of star
     public List<Member> getListOfMembers(String username) {
         List<Member> members = new ArrayList<>();
-        String sql = "SELECT member_id, members.family_id, first_name, last_name, member_type" +
-                " FROM members" +
-                " JOIN family ON members.family_id = family.family_id" +
-                " JOIN users ON users.user_id = family.user_id" +
-                " WHERE users.user_id = ?";
+        String sql = "SELECT * " +
+                "FROM members " +
+                "WHERE family_id = " +
+                "(SELECT family.family_id FROM family " +
+                "JOIN members ON family.family_id = members.family_id " +
+                "JOIN users ON members.user_id = users.user_id WHERE username = ?);";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Member newMember = mapRowToMember(results);
@@ -65,10 +73,10 @@ public class JdbcMemberDao implements MemberDao {
         return members;
 
     }
-
+    @Override
     public Member getMember(Long memberId){
         Member member = null;
-        String sql = "SELECT family_id, first_name, last_name, member_type" +
+        String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type" +
                     " FROM members" +
                     " WHERE members.member_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId);

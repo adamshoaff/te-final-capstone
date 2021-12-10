@@ -5,16 +5,14 @@ import axios from 'axios';
 export default {
 
     getMembers(username) {
-        return axios.get(`/member?username=${username}`);
+        return axios.get(`/members?username=${username}`);
     },
 
-    addMember(member) {
-        return axios.post(`/member/create`, member);
+    addMember(member, username) {
+        return axios.post(`/members?username=${username}`, member);
     },
 
-    getByUsername(username) {
-        return axios.get(`/family?username=${username}`);
-    }
+
 
 
 
