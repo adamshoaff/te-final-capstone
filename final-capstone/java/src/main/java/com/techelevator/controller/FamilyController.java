@@ -21,7 +21,7 @@ public class FamilyController {
     @GetMapping (path = "")
     public List<Family> getListOfFamilies(@RequestParam String familyName) throws FileNotFoundException {
         return this.familyDao.getListOfFamilies(familyName);
-        //Why is FileNotFoundationException dark?
+        //Why is FileNotFoundationException dark? because we don't use this exception in method
     }
 
     @PostMapping (path = "/create")

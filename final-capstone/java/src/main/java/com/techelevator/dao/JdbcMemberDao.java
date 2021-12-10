@@ -20,18 +20,23 @@ public class JdbcMemberDao implements MemberDao {
     }
 
     @Override
-    public void addMember(Member member) {
-        String sql = "INSERT INTO members (member_id, user_id, family_id, first_name, last_name, member_type)" +
-                " VALUES (?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, member.getMemberId(), member.getUserId(), member.getFamilyId(), member.getFirstName(), member.getLastName(), member.getMemberType());
+    public Member addMember(Member newMember) {
+        String sql = "INSERT INTO members (family_id, first_name, last_name, member_type)" +
+                " VALUES ( ?, ?, ?, ?) RETURNING member_id";
+        Long newId = jdbcTemplate.queryForObject(sql, Long.class, newMember.getFamilyId(), newMember.getFirstName(), newMember.getLastName(), newMember.getMemberType());
+
+        //jdbcTemplate.update(sql, member.getFamilyId(), member.getFirstName(), member.getLastName(), member.getMemberType());
+        return getMember(newId);
+        //the issue is that the family id doesn't get set up and there's no link between members and the user
+        //for some reason, the members weren't getting added to the table until I changed things around? I don't know why...
     }
 
     @Override
     public void updateMember(Member updatedMember) {
         String sql = "UPDATE members" +
-                " SET user_id = ?, family_id = ?, first_name = ?, last_name = ?, member_type = ?" +
+                " SET first_name = ?, last_name = ?, member_type = ?" +
                 " WHERE member_id = ?";
-        jdbcTemplate.update(sql, updatedMember.getUserId(), updatedMember.getFamilyId(), updatedMember.getFirstName(), updatedMember.getLastName(),
+        jdbcTemplate.update(sql, updatedMember.getFirstName(), updatedMember.getLastName(),
                 updatedMember.getMemberType());
     }
 
@@ -44,10 +49,11 @@ public class JdbcMemberDao implements MemberDao {
     @Override
     public List<Member> getListOfMembers(String username) {
         List<Member> members = new ArrayList<>();
-        String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type" +
+        String sql = "SELECT member_id, members.family_id, first_name, last_name, member_type" +
                 " FROM members" +
-                " JOIN users ON members.user_id = users.user_id" +
-                " WHERE username = ?";
+                " JOIN family ON members.family_id = family.family_id" +
+                " JOIN users ON users.username = family.username" +
+                " WHERE users.username = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Member newMember = mapRowToMember(results);
@@ -57,12 +63,24 @@ public class JdbcMemberDao implements MemberDao {
 
     }
 
+    public Member getMember(Long memberId){
+        Member member = null;
+        String sql = "SELECT family_id, first_name, last_name, member_type" +
+                    " FROM members" +
+                    " WHERE members.member_id = ?;";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId);
+        if(results.next()){
+            member = mapRowToMember(results);
+        }
+        return member;
+    }
+
+
     // (member_id,user_id, family_id, first_name, last_name, member_type)
 
     private Member mapRowToMember(SqlRowSet results) {
         Member member = new Member();
-        member.setMemberId(results.getLong("member_id"));
-        member.setUserId(results.getLong("user_id"));
+        //member.setMemberId(results.getLong("member_id"));
         member.setFamilyId(results.getLong("family_id"));
         member.setFirstName(results.getString("first_name"));
         member.setLastName(results.getString("last_name"));

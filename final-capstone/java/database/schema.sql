@@ -51,24 +51,24 @@ CREATE TABLE members (
     last_name varchar(50) NOT NULL,
     member_type varchar(50) NOT NULL,
     CONSTRAINT PK_member PRIMARY KEY (member_id),
-    CONSTRAINT FK_member_family FOREIGN KEY (family_id) REFERENCES family(family_id),
-    CONSTRAINT FK_member_user FOREIGN KEY (user_id) REFERENCES users(user_id)
+    CONSTRAINT FK_member_family FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
 INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_ADMIN');
 INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
+INSERT INTO users (username, password_hash, role) VALUES('banksfamily', 'password', 'ROLE_USER');
 
-INSERT INTO family (family_id, family_name)
-VALUES (501, 'banksfamily'),
-(502,'gilmoregirls');
+INSERT INTO family (family_id, username)
 
-INSERT INTO members (member_id,user_id, family_id, first_name, last_name, member_type)
-VALUES (101, 1, 501, 'Phil', 'Banks', 'Parent'),
-(102, null, 501, 'Vivanne', 'Banks', 'Parent'),
-(103, null, 501, 'Carlton', 'Banks', 'Child'),
-(104, 3, 502, 'Lorelai', 'Gilmore', 'Parent'),
-(105, null, 502, 'Rory', 'Gilmore', 'Child');
+VALUES (501, 'banksfamily'),(502,'gilmore'), (503,'admin');
+
+--INSERT INTO members (member_id, family_id, first_name, last_name, member_type)
+--VALUES (101, 501, 'Phil', 'Banks', 'Parent'),
+--(102, 501, 'Vivanne', 'Banks', 'Parent'),
+--(103, 501, 'Carlton', 'Banks', 'Child'),
+--(104, 502, 'Lorelai', 'Gilmore', 'Parent'),
+--(105, 502, 'Rory', 'Gilmore', 'Child');
 
 
 COMMIT TRANSACTION;
