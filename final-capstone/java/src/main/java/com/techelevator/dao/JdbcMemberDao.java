@@ -19,6 +19,9 @@ public class JdbcMemberDao implements MemberDao {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+// Friday 11AM this is what the table contains now -
+// (member_id, user_id, family_id, first_name, last_name, member_type)
+
     @Override
     public Member addMember(Member newMember) {
         String sql = "INSERT INTO members (family_id, first_name, last_name, member_type)" +
@@ -52,8 +55,8 @@ public class JdbcMemberDao implements MemberDao {
         String sql = "SELECT member_id, members.family_id, first_name, last_name, member_type" +
                 " FROM members" +
                 " JOIN family ON members.family_id = family.family_id" +
-                " JOIN users ON users.username = family.username" +
-                " WHERE users.username = ?";
+                " JOIN users ON users.user_id = family.user_id" +
+                " WHERE users.user_id = ?";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             Member newMember = mapRowToMember(results);
@@ -76,11 +79,12 @@ public class JdbcMemberDao implements MemberDao {
     }
 
 
-    // (member_id,user_id, family_id, first_name, last_name, member_type)
+   // (member_id, user_id, family_id, first_name, last_name, member_type)
 
     private Member mapRowToMember(SqlRowSet results) {
         Member member = new Member();
-        //member.setMemberId(results.getLong("member_id"));
+        member.setMemberId(results.getLong("member_id"));
+        member.setUserId(results.getLong("user_id"));
         member.setFamilyId(results.getLong("family_id"));
         member.setFirstName(results.getString("first_name"));
         member.setLastName(results.getString("last_name"));

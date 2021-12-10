@@ -33,25 +33,25 @@ CREATE TABLE users (
 	username varchar(50) NOT NULL,
 	password_hash varchar(200) NOT NULL,
 	role varchar(50) NOT NULL,
-	CONSTRAINT PK_username PRIMARY KEY (username),
-	CONSTRAINT UQ_username UNIQUE (username)
+	CONSTRAINT PK_users PRIMARY KEY (user_id)
 );
 
 CREATE TABLE family (
     family_id int DEFAULT nextval('seq_family_id'::regclass) NOT NULL,
-    username varchar(50) NOT NULL,
-    CONSTRAINT PK_family PRIMARY KEY (family_id),
-    CONSTRAINT FK_family_username FOREIGN KEY (username) REFERENCES users(username)
+    family_name varchar(50) NOT NULL,
+    CONSTRAINT PK_family PRIMARY KEY (family_id)
 );
 
 CREATE TABLE members (
     member_id int DEFAULT nextval('seq_member_id'::regclass) NOT NULL,
+    user_id int,
     family_id int,
     first_name varchar(50) NOT NULL,
     last_name varchar(50) NOT NULL,
     member_type varchar(50) NOT NULL,
-    CONSTRAINT PK_member PRIMARY KEY (member_id),
-    CONSTRAINT FK_member_family FOREIGN KEY (family_id) REFERENCES family(family_id)
+    CONSTRAINT PK_members PRIMARY KEY (member_id),
+    CONSTRAINT FK_members_user FOREIGN KEY (user_id) REFERENCES users(user_id),
+    CONSTRAINT FK_members_family FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
@@ -59,16 +59,15 @@ INSERT INTO users (username,password_hash,role) VALUES ('admin','$2a$08$UkVvwpUL
 INSERT INTO users (username,password_hash,role) VALUES ('gilmore','password','ROLE_USER');
 INSERT INTO users (username, password_hash, role) VALUES('banksfamily', 'password', 'ROLE_USER');
 
-INSERT INTO family (family_id, username)
-
+INSERT INTO family (family_id, family_name)
 VALUES (501, 'banksfamily'),(502,'gilmore'), (503,'admin');
 
---INSERT INTO members (member_id, family_id, first_name, last_name, member_type)
---VALUES (101, 501, 'Phil', 'Banks', 'Parent'),
---(102, 501, 'Vivanne', 'Banks', 'Parent'),
---(103, 501, 'Carlton', 'Banks', 'Child'),
---(104, 502, 'Lorelai', 'Gilmore', 'Parent'),
---(105, 502, 'Rory', 'Gilmore', 'Child');
+INSERT INTO members (member_id, user_id, family_id, first_name, last_name, member_type)
+VALUES (101, 4, 501, 'Phil', 'Banks', 'Parent'),
+(102, null, 501, 'Vivanne', 'Banks', 'Parent'),
+(103, null, 501, 'Carlton', 'Banks', 'Child'),
+(104, 3, 502, 'Lorelai', 'Gilmore', 'Parent'),
+(105, 3, 502, 'Rory', 'Gilmore', 'Child');
 
 
 COMMIT TRANSACTION;

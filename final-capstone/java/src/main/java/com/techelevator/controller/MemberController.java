@@ -8,7 +8,8 @@ import java.util.List;
 
 @CrossOrigin
 @RestController
-@RequestMapping ("/member")
+@RequestMapping ("/members")
+// (Annie) I have changed "/member" to "/members"
 
 public class MemberController {
 
@@ -23,7 +24,7 @@ public class MemberController {
         return this.memberDao.getListOfMembers(username);
     }
 
-    @PostMapping (path = "/create")
+    @PostMapping (path = "") // previously this said "/create", I believe Mike said to omit that
     public void addMember(@RequestBody Member memberToSave) {
         this.memberDao.addMember(memberToSave);
     }
