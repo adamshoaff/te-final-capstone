@@ -4,10 +4,12 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS family;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS reading_activity;
 DROP SEQUENCE IF EXISTS seq_user_id;
 DROP SEQUENCE IF EXISTS seq_family_id;
 DROP SEQUENCE IF EXISTS seq_member_id;
 DROP SEQUENCE IF EXISTS seq_book_id;
+DROP SEQUENCE IF EXISTS seq_activity_id;
 
 
 CREATE SEQUENCE seq_user_id
@@ -33,6 +35,13 @@ CREATE SEQUENCE seq_member_id
 CREATE SEQUENCE seq_book_id
   INCREMENT BY 1
   START WITH 1001
+  NO MAXVALUE
+  NO MINVALUE
+  CACHE 1;
+
+CREATE SEQUENCE seq_activity_id
+  INCREMENT BY 1
+  START WITH 21
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -70,6 +79,18 @@ CREATE TABLE books (
     family_id int,
     CONSTRAINT PK_books PRIMARY KEY (book_id),
     CONSTRAINT FK_books_family FOREIGN KEY (family_id) REFERENCES family(family_id)
+);
+CREATE TABLE reading_activity (
+    activity_id int DEFAULT nextval ('seq_activity_id'::regclass) NOT NULL,
+    activity_date date  NOT NULL,
+    reading_format varchar(50) NOT NULL,
+    reading_minutes int        NOT NULL,
+    member_id       int,
+    book_id          int,
+    reader_notes      varchar(500),
+    CONSTRAINT PK_reading_activity PRIMARY KEY (activity_id),
+    CONSTRAINT FK_activity_member FOREIGN KEY (member_id) REFERENCES members(member_id),
+    CONSTRAINT FK_activity_book FOREIGN KEY (book_id) REFERENCES books(book_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
