@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface ReadingActivityDao {
 
-    Long getReadingMinutes(Long memberId);
-
     ReadingActivity getActivity(Long activityId);
 
     void addActivity(ReadingActivity activityToAdd);
@@ -15,6 +13,8 @@ public interface ReadingActivityDao {
     void updateActivity(ReadingActivity updatedActivity);
 
     void deleteActivity(Long activityId);
+
+    Long getReadingMinutes(Long memberId);
 
     List<ReadingActivity> getListOfActivities(Long memberId);
 
