@@ -24,7 +24,7 @@ public class JdbcBookDao implements BookDao {
     public List<Book> getBookByUsername(String username) {
        List<Book> books = new ArrayList<>();
 
-       String sql = "SELECT book_id, book_isbn, title, author, family_id " +
+       String sql = "SELECT book_id, isbn, title, author, family_id " +
                "FROM books " +
                "JOIN family ON family.family_id = books.family_id " +
                "JOIN members ON members.family_id = family.family_id " +
@@ -45,10 +45,10 @@ public class JdbcBookDao implements BookDao {
 
        Long familyId = jdbcTemplate.queryForObject(familyIdSql, Long.class, username);
 
-       String sql = "INSERT INTO books (book_isbn, title, author, family_id)" +
+       String sql = "INSERT INTO books (title, author, isbn, family_id)" +
                " VALUES ( ?, ?, ?, ?) RETURNING book_id";
 
-       Long newId = jdbcTemplate.queryForObject(sql, Long.class, newBook.getBookIsbn(), newBook.getTitle(), newBook.getAuthor(), familyId);
+       Long newId = jdbcTemplate.queryForObject(sql, Long.class, newBook.getTitle(), newBook.getAuthor(), newBook.getIsbn(), familyId);
 
        return getBook(newId);
 
@@ -57,7 +57,7 @@ public class JdbcBookDao implements BookDao {
     @Override
     public Book getBook(long bookId) {
        Book book = null;
-       String sql = "SELECT book_id, book_isbn, title, author, family_id " +
+       String sql = "SELECT book_id, isbn, title, author, family_id " +
                "FROM books " +
                "WHERE book_id = ?;";
        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, bookId);
@@ -71,7 +71,7 @@ public class JdbcBookDao implements BookDao {
        Book book = new Book();
        book.setAuthor(rowSet.getString("author"));
        book.setBookId(rowSet.getLong("book_id"));
-       book.setBookIsbn(rowSet.getString("book_isbn"));
+       book.setIsbn(rowSet.getString("isbn"));
        book.setTitle(rowSet.getString("title"));
        book.setFamilyId(rowSet.getLong("family_id"));
        return book;

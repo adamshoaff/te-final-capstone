@@ -3,16 +3,16 @@ package com.techelevator.model;
 public class Book {
 
     private long bookId;
-    private String bookIsbn;
+    private String isbn;
     private String title;
     private String author;
     private long familyId;
 
     public Book () {}
 
-    public Book(long bookId, String bookIsbn, String title, String author, long familyId) {
+    public Book(long bookId, String isbn, String title, String author, long familyId) {
         this.bookId = bookId;
-        this.bookIsbn = bookIsbn;
+        this.isbn = isbn;
         this.title = title;
         this.author = author;
         this.familyId = familyId;
@@ -26,12 +26,12 @@ public class Book {
         this.bookId = bookId;
     }
 
-    public String getBookIsbn() {
-        return bookIsbn;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setBookIsbn(String bookIsbn) {
-        this.bookIsbn = bookIsbn;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
