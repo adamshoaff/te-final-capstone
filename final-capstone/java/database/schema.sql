@@ -34,7 +34,7 @@ CREATE SEQUENCE seq_member_id
 
 CREATE SEQUENCE seq_book_id
   INCREMENT BY 1
-  START WITH 1001
+  START WITH 1050
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -74,7 +74,7 @@ CREATE TABLE members (
 
 CREATE TABLE books (
     book_id int DEFAULT nextval ('seq_book_id'::regclass) NOT NULL,
-    book_isbn varchar(13) NOT NULL,
+    isbn varchar(13) NOT NULL,
     title varchar(100) NOT NULL,
     author varchar(100) NOT NULL,
     family_id int,
@@ -109,7 +109,7 @@ VALUES (101, 4, 501, 'Phil', 'Banks', 'Parent'),
        (104, 3, 502, 'Lorelai', 'Gilmore', 'Parent'),
        (105, null, 502, 'Rory', 'Gilmore', 'Child');
 
-INSERT INTO books (book_id, book_isbn, title, author, family_id)
+INSERT INTO books (book_id, isbn, title, author, family_id)
 VALUES (1001, 12345, 'Will', 'Will Smith', 501),
        (1002, 23456, 'The Splendid and The Vile', 'Erik Larson', 501),
        (1003, 22222, 'The Amber Spyglass', 'Philip Pullman', 501),
