@@ -2,13 +2,13 @@
   <form v-on:submit.prevent>
     <div class="book-form-element">
       <label for="title">Title</label>
-      <input type="text" name="title" id="title" v-model="newBook.title" />
+      <input type="text" name="title" id="title" v-model="newBook.title" required />
 
       <label for="author">Author</label>
-      <input type="text" name="author" id="author" v-model="newBook.author" />
+      <input type="text" name="author" id="author" v-model="newBook.author" required />
 
       <label for="isbn">Isbn</label>
-      <input type="text" name="isbn" id="isbn" v-model="newBook.isbn" />
+      <input type="text" name="isbn" id="isbn" v-model="newBook.isbn" required />
       <div class="actions">
         <button type="submit" v-on:click="addBook()">Save</button>
         <button type="button" v-on:click="cancel()">Cancel</button>

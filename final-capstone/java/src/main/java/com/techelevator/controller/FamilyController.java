@@ -3,6 +3,7 @@ package com.techelevator.controller;
 import com.techelevator.dao.JdbcFamilyDao;
 import com.techelevator.dao.JdbcMemberDao;
 import com.techelevator.model.Family;
+import com.techelevator.model.FamilyNotFoundException;
 import com.techelevator.model.Member;
 import org.springframework.web.bind.annotation.*;
 import java.io.FileNotFoundException;
@@ -30,7 +31,7 @@ private JdbcMemberDao memberDao;
 
   //TODO: add authentication
     @GetMapping(path="")
-    public Family getFamily(@RequestParam String username){
+    public Family getFamily(@RequestParam String username) throws FamilyNotFoundException {
         Family family = familyDao.getByUsername(username);
         List<Member> members = memberDao.getListOfMembers(username);
         family.setMembers(members);
@@ -43,12 +44,12 @@ private JdbcMemberDao memberDao;
     }
 
     @RequestMapping (path = "/{id}", method = RequestMethod.PUT)
-    public void updateFamily(@RequestBody Family family) throws FileNotFoundException {
+    public void updateFamily(@RequestBody Family family) throws FamilyNotFoundException {
         this.familyDao.updateFamily(family);
     }
 
     @RequestMapping (path = "/{id)", method = RequestMethod.DELETE)
-    public void deleteMember(@PathVariable long id) throws FileNotFoundException {
+    public void deleteMember(@PathVariable long id) throws FamilyNotFoundException {
         this.familyDao.deleteFamily(id);
     }
 }

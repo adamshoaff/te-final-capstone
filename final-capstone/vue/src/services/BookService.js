@@ -7,6 +7,6 @@ export default {
     },
 
     addBook(book, username) {
-        return axios.post(`/books?username=${username}`, book);
+        return axios.post(`/books/add?username=${username}`, book);
     }
 }

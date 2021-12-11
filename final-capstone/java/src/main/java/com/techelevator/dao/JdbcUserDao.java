@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.model.Member;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.rowset.SqlRowSet;
@@ -17,6 +18,7 @@ import com.techelevator.model.User;
 public class JdbcUserDao implements UserDao {
 
     private JdbcTemplate jdbcTemplate;
+    private MemberDao memberDao;
 
     public JdbcUserDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -70,6 +72,10 @@ public class JdbcUserDao implements UserDao {
         String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
         //TODO: Insert user into members table
         String insertUserIntoMember = "INSERT INTO members();";
+
+
+
+
         //member table: member_id, user_id, name, family_Id
 
         // Annie confusion-induced attempt:
@@ -79,9 +85,6 @@ public class JdbcUserDao implements UserDao {
         // String insertUserIntoMember = "INSERT INTO members(name)" +
         // " VALUES(?) RETURNING member_id;"
         // is this the right return?
-
-
-
 
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
@@ -97,6 +100,13 @@ public class JdbcUserDao implements UserDao {
                 }
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
+//        long longUserId = (long) newUserId;
+//        Member userMember = new Member();
+//
+//        userMember.setUserId(longUserId);
+//        userMember.setFirstName(username);
+//
+//        memberDao.addMember(userMember, username);
 
         return userCreated;
     }
