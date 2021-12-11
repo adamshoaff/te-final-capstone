@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     currentMember: [],
     members: [],
+    currentBook: [],
     token: currentToken || '',
     user: currentUser || {}
   },
@@ -51,7 +52,11 @@ export default new Vuex.Store({
     },
     SET_CURRENT_MEMBER(state, data) {
       state.currentMember = data;
+    },
+    SET_CURRENT_BOOK(state, data) {
+      state.currentBook = data;
     }
+
 
 
 

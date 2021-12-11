@@ -24,7 +24,7 @@ public class JdbcBookDao implements BookDao {
     public List<Book> getBookByUsername(String username) {
        List<Book> books = new ArrayList<>();
 
-       String sql = "SELECT book_id, isbn, title, author, family_id " +
+       String sql = "SELECT book_id, isbn, title, author, books.family_id " +
                "FROM books " +
                "JOIN family ON family.family_id = books.family_id " +
                "JOIN members ON members.family_id = family.family_id " +

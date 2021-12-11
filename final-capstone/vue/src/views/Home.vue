@@ -15,6 +15,7 @@
 import FamilyInfo from "@/components/FamilyInfo.vue";
 import FamilyService from "@/services/FamilyService.js";
 import BookInfo from "@/components/BookInfo.vue";
+import BookService from "@/services/BookService.js";
 
 export default {
   components: { FamilyInfo, BookInfo },
@@ -22,6 +23,9 @@ export default {
   created() {
     FamilyService.getByUsername(this.$store.state.user.username).then((r) => {
       this.$store.commit("SET_CURRENT_MEMBER", r.data);
+    });
+    BookService.getBooks(this.$store.state.user.username).then((r) => {
+      this.$store.commit("SET_CURRENT_BOOK", r.data);
     });
   },
 };
