@@ -9,7 +9,7 @@ public class ReadingActivity {
     private Long readingMinutes;
     private Long memberId;
     private Long bookId;
-    private String readerNote;
+    private String readerNotes;
 
     public ReadingActivity () {}
 
@@ -20,7 +20,7 @@ public class ReadingActivity {
        this.readingMinutes = readingMinutes;
        this.memberId = memberId;
        this.bookId = bookId;
-       this.readerNote = readerNote;
+       this.readerNotes = readerNotes;
 
     }
 
@@ -72,11 +72,11 @@ public class ReadingActivity {
         this.bookId = bookId;
     }
 
-    public String getReaderNote() {
-        return readerNote;
+    public String getReaderNotes() {
+        return readerNotes;
     }
 
-    public void setReaderNote(String readerNote) {
-        this.readerNote = readerNote;
+    public void setReaderNotes(String readerNotes) {
+        this.readerNotes = readerNotes;
     }
 }

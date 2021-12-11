@@ -40,8 +40,6 @@ public class JdbcFamilyDao implements FamilyDao {
         return family;
     }
 
-
-
     @Override
     public void updateFamily(Family updatedFamily) {
         String sql = "UPDATE family" +

@@ -56,10 +56,9 @@ public class JdbcMemberDao implements MemberDao {
     }
 
     @Override
-    //TODO: add column names instead of star
     public List<Member> getListOfMembers(String username) {
         List<Member> members = new ArrayList<>();
-        String sql = "SELECT * " +
+        String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type" +
                 "FROM members " +
                 "WHERE family_id = " +
                 "(SELECT family.family_id FROM family " +
