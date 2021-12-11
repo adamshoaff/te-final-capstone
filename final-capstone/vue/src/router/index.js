@@ -6,6 +6,7 @@ import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import store from '../store/index'
 import CreateNewMember from '../views/CreateNewMember.vue'
+import CreateNewBook from '../views/CreateNewBook.vue'
 
 Vue.use(Router)
 
@@ -55,11 +56,19 @@ const router = new Router({
       }
     },
     {
-      path:"/create",
-      name:"create-new-member",
-      component:CreateNewMember,
+      path: "/create",
+      name: "create-new-member",
+      component: CreateNewMember,
       meta: {
-        requiredAuth:false
+        requiredAuth: true
+      }
+    },
+    {
+      path: "/add-a-book",
+      name: "create-new-book",
+      component: CreateNewBook,
+      meta: {
+        requiredAuth: true
       }
     }
   ]

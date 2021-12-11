@@ -6,15 +6,18 @@
       Add new Member
     </router-link>
     <family-info />
+    <book-info />
+    <router-link :to="{ name: 'create-new-book' }"> Add new Book </router-link>
   </div>
 </template>
 
 <script>
 import FamilyInfo from "@/components/FamilyInfo.vue";
 import FamilyService from "@/services/FamilyService.js";
+import BookInfo from "@/components/BookInfo.vue";
 
 export default {
-  components: { FamilyInfo },
+  components: { FamilyInfo, BookInfo },
   name: "home",
   created() {
     FamilyService.getByUsername(this.$store.state.user.username).then((r) => {
