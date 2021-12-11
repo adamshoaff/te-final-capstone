@@ -45,10 +45,10 @@ public class JdbcBookDao implements BookDao {
 
        Long familyId = jdbcTemplate.queryForObject(familyIdSql, Long.class, username);
 
-       String sql = "INSERT INTO books (book_isbn, title, author, family_id)" +
+       String sql = "INSERT INTO books (title, author, book_isbn, family_id)" +
                " VALUES ( ?, ?, ?, ?) RETURNING book_id";
 
-       Long newId = jdbcTemplate.queryForObject(sql, Long.class, newBook.getBookIsbn(), newBook.getTitle(), newBook.getAuthor(), familyId);
+       Long newId = jdbcTemplate.queryForObject(sql, Long.class, newBook.getTitle(), newBook.getAuthor(), newBook.getBookIsbn(), familyId);
 
        return getBook(newId);
 
