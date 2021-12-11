@@ -18,4 +18,5 @@ public interface ReadingActivityDao {
 
     List<ReadingActivity> getListOfActivities(Long memberId);
 
+
 }
