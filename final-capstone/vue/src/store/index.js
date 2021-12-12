@@ -21,6 +21,7 @@ export default new Vuex.Store({
     currentMember: [],
     members: [],
     currentBook: [],
+    currentActivity: [],
     token: currentToken || '',
     user: currentUser || {}
   },
@@ -55,6 +56,9 @@ export default new Vuex.Store({
     },
     SET_CURRENT_BOOK(state, data) {
       state.currentBook = data;
+    },
+    SET_CURRENT_ACTIVITY(state, data) {
+      state.currentActivity = data;
     }
 
 
