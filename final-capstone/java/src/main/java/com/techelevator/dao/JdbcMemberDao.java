@@ -58,7 +58,7 @@ public class JdbcMemberDao implements MemberDao {
     @Override
     public List<Member> getListOfMembers(String username) {
         List<Member> members = new ArrayList<>();
-        String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type" +
+        String sql = "SELECT member_id, user_id, family_id, first_name, last_name, member_type " +
                 "FROM members " +
                 "WHERE family_id = " +
                 "(SELECT family.family_id FROM family " +

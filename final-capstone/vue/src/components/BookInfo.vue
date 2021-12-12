@@ -15,14 +15,10 @@ export default {
   name: "book-info",
   data() {
     return {
-      books: [
-        {
-          book: {},
-        },
-      ],
+      books: [],
     };
   },
-  create() {
+  created() {
     let bookPromise = BookService.getBooks(this.$store.state.user.username);
     bookPromise.then((response) => {
       this.books = response.data;
