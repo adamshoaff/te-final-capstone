@@ -18,10 +18,8 @@ public class ReadingActivityController {
     @GetMapping (path ="/{activityId}")
     public ReadingActivity getActivity (@PathVariable Long activityId) throws ReadingActivityNotFoundException {
         return this.readingActivityDao.getActivity(activityId);
-
     }
-    
-    @PostMapping (path = "")
+    @PostMapping (path = "/add")
     public void addActivity(@RequestBody ReadingActivity activityToAdd) {
         this.readingActivityDao.addActivity(activityToAdd);
     }
@@ -29,16 +27,16 @@ public class ReadingActivityController {
         public void updateActivity (@RequestBody ReadingActivity updatedActivity) throws ReadingActivityNotFoundException {
         this.readingActivityDao.updateActivity(updatedActivity);
     }
-    @RequestMapping (path ="/{activityId}" , method = RequestMethod.DELETE)
+    @RequestMapping (path = "/{activityId}", method = RequestMethod.DELETE)
     public void deleteActivity(@PathVariable Long activityId) throws ReadingActivityNotFoundException {
         this.readingActivityDao.deleteActivity(activityId);
     }
-    @GetMapping (path ="/memberId")
+    @GetMapping (path = "/memberId")
     public Long getReadingMinutes(@RequestParam Long memberId) {
         return this.readingActivityDao.getReadingMinutes(memberId);
     }
     @GetMapping(path = "")
-    public List<ReadingActivity> getListOfActivities(@RequestParam Long memberId) throws ReadingActivityNotFoundException{
-        return this.readingActivityDao.getListOfActivities(memberId);
+    public List<ReadingActivity> getListOfActivities(@RequestParam String username) throws ReadingActivityNotFoundException{
+        return this.readingActivityDao.getListOfActivities(username);
     }
 }

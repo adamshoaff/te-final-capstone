@@ -13,7 +13,7 @@ public interface MemberDao {
 
     Member addMember(Member memberToAdd, String username);
 
-   Member getMember(Long memberId);
+    Member getMember(Long memberId);
 
     void updateMember(Member updatedMember);
 

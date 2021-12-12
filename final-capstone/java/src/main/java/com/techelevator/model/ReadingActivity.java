@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class ReadingActivity {
     private Long activityId;
-    private Date activityDate;
+    private String activityDate;
     private String readingFormat;
     private Long readingMinutes;
     private Long memberId;
@@ -13,7 +13,7 @@ public class ReadingActivity {
 
     public ReadingActivity () {}
 
-    public ReadingActivity (Long activityId, Date activityDate, String readingFormat, Long readingMinutes, Long memberId, Long bookId, String readerNote) {
+    public ReadingActivity (Long activityId, String activityDate, String readingFormat, Long readingMinutes, Long memberId, Long bookId, String readerNote) {
        this.activityId = activityId;
        this.activityDate = activityDate;
        this.readingFormat= readingFormat;
@@ -32,11 +32,11 @@ public class ReadingActivity {
         this.activityId = activityId;
     }
 
-    public Date getActivityDate() {
+    public String getActivityDate() {
         return activityDate;
     }
 
-    public void setActivityDate(Date activityDate) {
+    public void setActivityDate(String activityDate) {
         this.activityDate = activityDate;
     }
 

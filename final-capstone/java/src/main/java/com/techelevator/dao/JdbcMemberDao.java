@@ -35,6 +35,11 @@ public class JdbcMemberDao implements MemberDao {
         Long newId = jdbcTemplate.queryForObject(sql, Long.class, familyId, newMember.getFirstName(), newMember.getLastName(), newMember.getMemberType());
 
         //jdbcTemplate.update(sql, member.getFamilyId(), member.getFirstName(), member.getLastName(), member.getMemberType());
+
+        String userIdSql = "INSERT INTO users (username, password_hash, role)" +
+                " VALUES (?, ?, ?);";
+        jdbcTemplate.update(userIdSql, newMember.getFirstName(), "$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC", "ROLE_USER");
+
         return getMember(newId);
         //the issue is that the family id doesn't get set up and there's no link between members and the user
         //for some reason, the members weren't getting added to the table until I changed things around? I don't know why...

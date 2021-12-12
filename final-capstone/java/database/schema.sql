@@ -83,7 +83,7 @@ CREATE TABLE books (
 );
 CREATE TABLE reading_activity (
     activity_id int DEFAULT nextval ('seq_activity_id'::regclass) NOT NULL,
-    activity_date date  NOT NULL,
+    activity_date date NOT NULL,
     reading_format varchar(50) NOT NULL,
     reading_minutes int NOT NULL,
     member_id int,
@@ -115,6 +115,10 @@ VALUES (1001, 12345, 'Will', 'Will Smith', 501),
        (1003, 22222, 'The Amber Spyglass', 'Philip Pullman', 501),
        (1004, 33333, 'Nature Anatomy', 'Julia Rothman', 502),
        (1005, 44444, 'The Innovators', 'Walter Isaacson', 502);
+
+INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, reader_notes)
+VALUES (21, '12/12/2021', 'audiobook', 60, 103, 1001, 'This was a great book!'),
+        (22, '12/13/2021', 'book', 30, 101, 1004, 'I hated this book!');
 
 
 COMMIT TRANSACTION;

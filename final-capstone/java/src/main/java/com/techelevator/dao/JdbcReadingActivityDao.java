@@ -61,16 +61,16 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
         return jdbcTemplate.queryForObject(sql, Long.class, memberId);
     }
 
-
-    //TODO: Leave member_id unknown (since all members will have a list of activities), or connect to users and leave username unknown?
     @Override
-    public List<ReadingActivity> getListOfActivities(Long memberId) {
+    public List<ReadingActivity> getListOfActivities(String username) {
         List<ReadingActivity> activities = new ArrayList<>();
-        String sql = "SELECT activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, reader_notes" +
+        String sql = "SELECT *" +
                 " FROM reading_activity" +
                 " JOIN members ON reading_activity.member_id = members.member_id" +
-                " WHERE members.member_id = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, memberId);
+                " JOIN family ON members.family_id = family.family_id" +
+                " JOIN users ON members.user_id = users.user_id" +
+                " WHERE users.username = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
         while (results.next()) {
             ReadingActivity newActivity = mapRowToReadingActivity(results);
             activities.add(newActivity);
@@ -81,7 +81,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
     private ReadingActivity mapRowToReadingActivity(SqlRowSet results) {
         ReadingActivity activity = new ReadingActivity();
         activity.setActivityId(results.getLong("activity_id"));
-        activity.setActivityDate(results.getDate("activity_date"));
+        activity.setActivityDate(results.getString("activity_date"));
         activity.setReadingFormat(results.getString("reading_format"));
         activity.setReadingMinutes(results.getLong("reading_minutes"));
         activity.setMemberId(results.getLong("member_id"));
