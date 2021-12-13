@@ -20,7 +20,7 @@ CREATE SEQUENCE seq_user_id
 
 CREATE SEQUENCE seq_family_id
   INCREMENT BY 1
-  START WITH 501
+  START WITH 550
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -65,7 +65,7 @@ CREATE TABLE members (
     user_id int,
     family_id int,
     first_name varchar(50) NOT NULL,
-    last_name varchar(50) NOT NULL,
+    last_name varchar(50),
     member_type varchar(50) NOT NULL,
     CONSTRAINT PK_members PRIMARY KEY (member_id),
     CONSTRAINT FK_members_user FOREIGN KEY (user_id) REFERENCES users(user_id),

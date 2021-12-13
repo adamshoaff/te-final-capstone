@@ -64,28 +64,34 @@ public class JdbcUserDao implements UserDao {
         throw new UsernameNotFoundException("User " + username + " was not found.");
     }
 
+//    @Override
+//    public boolean create(String username, String password, String role,String firstName, String lastName) {
+//        boolean userCreated = false;
+//        int userId = createUser(username, password, role);
+//        int familyId = createFamily(firstName +" "+lastName+" "+ "family" );
+//        int memberId = createMember(userId, firstName, lastName, familyId);
+//        return (userId > 0 && memberId > 0);
+//    }
+
+   @Override
+    public int createMember(int userId, String firstName, int familyId, String memberType) {
+        String sql = "INSERT INTO members (user_id, first_name, family_id, member_type) VALUES(?,?,?,?) RETURNING member_id;";
+        return jdbcTemplate.queryForObject(sql, Integer.class, userId, firstName, familyId, memberType);
+    }
+
     @Override
-    public boolean create(String username, String password, String role,String firstName, String lastName) {
-        boolean userCreated = false;
-        int userId = createUser(username, password, role);
-        int familyId = createFamily(firstName +" "+lastName+" "+ "family" );
-        int memberId = createMember(userId,firstName,lastName,familyId);
-        return (userId > 0 && memberId > 0);
-
-
+    public int createFamily(String username) {
+        String sql = "INSERT INTO family (family_name) VALUES (?) RETURNING family_id;";
+        return jdbcTemplate.queryForObject(sql, Integer.class, username);
     }
-    private int createMember(int userId, String firstName, String lastName) {
-        String sql = "INSERT INTO members (userId, firstName, lstName) VALUES(?,?,?) RETURNING memberId";
-        return jdbcTemplate.queryForObject(sql, Integer.class, userId, firstName, lastName);
-    }
-    private int createUser(String username, String password, String role) {
+
+    @Override
+    public int createUser(String username, String password, String role) {
         boolean userCreated;
         // create user
-        String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
+        String insertUser = "insert into users (username,password_hash,role) values(?,?,?);";
         //TODO: Insert user into members table
         String insertUserIntoMember = "INSERT INTO members();";
-
-
 
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
@@ -102,7 +108,12 @@ public class JdbcUserDao implements UserDao {
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
 
-        return userCreated;
+//        String insertMember = "INSERT INTO members (user_id, family_id, first_name, last_name, member_type) VALUES (?, ?, ?, ?, ?);";
+        int familyId = createFamily(username);
+        createMember(newUserId, username, familyId, "parent");
+
+        //return userCreated;
+        return newUserId;
     }
 
     private User mapRowToUser(SqlRowSet rs) {
