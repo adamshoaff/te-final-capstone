@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<!--currently not working: the component is not displaying the members that are in the table-->
+
 
 <script>
 import FamilyService from "@/services/FamilyService.js";
@@ -54,6 +54,7 @@ export default {
       this.family = response.data;
       //need to push this data into the store (look at book)
       //Vuex
+      this.$store.commit("SET_CURRENT_FAMILY", response.data);
     });
   },
 };

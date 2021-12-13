@@ -8,7 +8,7 @@ public interface ReadingActivityDao {
 
     ReadingActivity getActivity(Long activityId);
 
-    void addActivity(ReadingActivity activityToAdd);
+    ReadingActivity addActivity(ReadingActivity activityToAdd, Long memberId);
 
     void updateActivity(ReadingActivity updatedActivity);
 

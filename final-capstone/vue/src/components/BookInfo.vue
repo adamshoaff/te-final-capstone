@@ -22,6 +22,7 @@ export default {
     let bookPromise = BookService.getBooks(this.$store.state.user.username);
     bookPromise.then((response) => {
       this.books = response.data;
+      this.$store.commit("SET_CURRENT_BOOKS", response.data);
     });
   },
 };

@@ -41,7 +41,7 @@ CREATE SEQUENCE seq_book_id
 
 CREATE SEQUENCE seq_activity_id
   INCREMENT BY 1
-  START WITH 21
+  START WITH 25
   NO MAXVALUE
   NO MINVALUE
   CACHE 1;
@@ -83,7 +83,7 @@ CREATE TABLE books (
 );
 CREATE TABLE reading_activity (
     activity_id int DEFAULT nextval ('seq_activity_id'::regclass) NOT NULL,
-    activity_date date NOT NULL,
+    activity_date date default NOW(),
     reading_format varchar(50) NOT NULL,
     reading_minutes int NOT NULL,
     member_id int,

@@ -33,12 +33,14 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
     }
 
     @Override
-    public void addActivity(ReadingActivity activityToAdd) {
-        String sql = "INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_Id, reader_notes)" +
-                " VALUES (?, ?, ?, ?, ?, ?, ?)";
-        jdbcTemplate.update(sql, activityToAdd.getActivityId(), activityToAdd.getActivityDate(), activityToAdd.getReadingFormat(),
-                activityToAdd.getReadingMinutes(), activityToAdd.getMemberId(), activityToAdd.getBookId(), activityToAdd.getReaderNotes());
-    }
+    public ReadingActivity addActivity(ReadingActivity activityToAdd, Long memberId) {
+        String sql = "INSERT INTO reading_activity (reading_format, reading_minutes, member_id, book_Id, reader_notes)" +
+                " VALUES (?, ?, ?, ?, ?) RETURNING activity_id;";
+        Long activityId = jdbcTemplate.queryForObject(sql, Long.class, activityToAdd.getReadingFormat(),
+                activityToAdd.getReadingMinutes(), memberId, activityToAdd.getBookId(), activityToAdd.getReaderNotes());
+
+        return getActivity(activityId);
+}
 
     @Override
     public void updateActivity(ReadingActivity updatedActivity) {

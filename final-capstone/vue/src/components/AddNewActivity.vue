@@ -1,6 +1,17 @@
 <template>
-  <form>
+  <form v-on:submit.prevent>
     <div class="activity-form-element">
+      <div class="member-dropdown">
+        <select id="dropdown" v-model="newActivity.memberId">
+          <option
+            v-for="member in $store.state.currentFamily.members"
+            v-bind:key="member.member"
+            :value="memberId"
+          >
+            {{ member.firstName }}
+          </option>
+        </select>
+      </div>
       <div class="memberName">
         <label for="memberName">Member Name: </label>
         <input
@@ -10,6 +21,17 @@
           v-model="newActivity.memberName"
         />
       </div>
+
+      <select id="dropdown" v-model="newActivity.bookTitle">
+        <option
+          v-for="book in $store.state.currentBooks"
+          v-bind:key="book.bookTitle"
+          :value="bookId"
+        >
+          {{ book.Title }}
+        </option>
+      </select>
+
       <div class="bookTitle">
         <label for="bookTitle">Book Title: </label>
         <input
@@ -44,7 +66,7 @@
         <textarea
           name="readingNotes"
           id="readingNotes"
-          v-model="newActivity.readingNotes"
+          v-model="newActivity.readerNotes"
         ></textarea>
       </div>
       <div class="actions">
@@ -62,11 +84,11 @@ export default {
   data() {
     return {
       newActivity: {
-        memberName: "",
+        memberId: Number,
         bookTitle: "",
         readingFormat: "",
         readingMinutes: "",
-        readingNotes: "",
+        readerNotes: "",
       },
     };
   },
@@ -74,7 +96,7 @@ export default {
     addActivity() {
       ActivityService.addActivity(
         this.newActivity,
-        this.$store.state.user.username
+        this.$store.state.currentMember.memberId
       )
         .then((response) => {
           if (response.status === 200) {
@@ -88,6 +110,7 @@ export default {
     cancel() {
       this.$router.push("/");
     },
+    //create a method that takes in the member name and returns the id of the member
   },
 };
 </script>

@@ -18,10 +18,11 @@ if (currentToken != null) {
 
 export default new Vuex.Store({
   state: {
-    currentMember: [],
-    members: [],
-    currentBook: [],
-    currentActivity: [],
+    currentFamily: {},
+    currentMember: {},
+    members: {},
+    currentBooks: {},
+    currentActivity: {},
     token: currentToken || '',
     user: currentUser || {}
   },
@@ -51,15 +52,19 @@ export default new Vuex.Store({
     SET_MEMBERS(state, data) {
       state.members = data;
     },
-    SET_CURRENT_MEMBER(state, data) {
-      state.currentMember = data;
+    SET_CURRENT_FAMILY(state, data) {
+      state.currentFamily = data;
     },
-    SET_CURRENT_BOOK(state, data) {
-      state.currentBook = data;
+    SET_CURRENT_BOOKS(state, data) {
+      state.currentBooks = data;
     },
     SET_CURRENT_ACTIVITY(state, data) {
       state.currentActivity = data;
+    },
+    SET_CURRENT_MEMBER(state, data) {
+      state.currentMember = data;
     }
+
 
 
 

@@ -20,8 +20,8 @@ public class ReadingActivityController {
         return this.readingActivityDao.getActivity(activityId);
     }
     @PostMapping (path = "/add")
-    public void addActivity(@RequestBody ReadingActivity activityToAdd) {
-        this.readingActivityDao.addActivity(activityToAdd);
+    public void addActivity(@RequestBody ReadingActivity activityToAdd, @RequestParam Long memberId) {
+        this.readingActivityDao.addActivity(activityToAdd, memberId);
     }
     @RequestMapping (path = "/{activityId}", method= RequestMethod.PUT)
         public void updateActivity (@RequestBody ReadingActivity updatedActivity) throws ReadingActivityNotFoundException {
