@@ -65,26 +65,27 @@ public class JdbcUserDao implements UserDao {
     }
 
     @Override
-    public boolean create(String username, String password, String role) {
+    public boolean create(String username, String password, String role,String firstName, String lastName) {
         boolean userCreated = false;
+        int userId = createUser(username, password, role);
+        int familyId = createFamily(firstName +" "+lastName+" "+ "family" );
+        int memberId = createMember(userId,firstName,lastName,familyId);
+        return (userId > 0 && memberId > 0);
 
+
+    }
+    private int createMember(int userId, String firstName, String lastName) {
+        String sql = "INSERT INTO members (userId, firstName, lstName) VALUES(?,?,?) RETURNING memberId";
+        return jdbcTemplate.queryForObject(sql, Integer.class, userId, firstName, lastName);
+    }
+    private int createUser(String username, String password, String role) {
+        boolean userCreated;
         // create user
         String insertUser = "insert into users (username,password_hash,role) values(?,?,?)";
         //TODO: Insert user into members table
         String insertUserIntoMember = "INSERT INTO members();";
 
 
-
-
-        //member table: member_id, user_id, name, family_Id
-
-        // Annie confusion-induced attempt:
-        // String insertUser = "INSERT INTO users (username, password_hash, role)" +
-        // " VALUES(?, ?, ?) RETURNING user_id;"
-        // Long newId = jdbcTemplate.queryForObject(insertUser, Long.class...need help here
-        // String insertUserIntoMember = "INSERT INTO members(name)" +
-        // " VALUES(?) RETURNING member_id;"
-        // is this the right return?
 
         String password_hash = new BCryptPasswordEncoder().encode(password);
         String ssRole = "ROLE_" + role.toUpperCase();
@@ -100,13 +101,6 @@ public class JdbcUserDao implements UserDao {
                 }
                 , keyHolder) == 1;
         int newUserId = (int) keyHolder.getKeys().get(id_column);
-//        long longUserId = (long) newUserId;
-//        Member userMember = new Member();
-//
-//        userMember.setUserId(longUserId);
-//        userMember.setFirstName(username);
-//
-//        memberDao.addMember(userMember, username);
 
         return userCreated;
     }
