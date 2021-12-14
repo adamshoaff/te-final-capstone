@@ -1,6 +1,13 @@
 <template>
   <div>
-    <h1>My Family's Activities</h1>
+    <h1>Last Reading Activities:</h1>
+    <div
+      class="activities"
+      v-for="activity in activities"
+      v-bind:key="activity.activityId"
+    >
+      {{ activity.readingMinutes }} minutes - {{ activity.readingFormat }}
+    </div>
   </div>
 </template>
 
@@ -15,8 +22,10 @@ export default {
   },
   created() {
     let activityPromise = ActivityService.getActivities(
-      this.$store.state.user.username
+      this.$store.state.user.username,
+      this.$store.state.currentFamily.familyId
     );
+    console.log(this.$store.state.currentFamily.familyId);
     activityPromise.then((response) => {
       this.activities = response.data;
     });

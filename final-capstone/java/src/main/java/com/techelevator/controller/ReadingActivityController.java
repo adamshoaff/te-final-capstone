@@ -36,7 +36,7 @@ public class ReadingActivityController {
         return this.readingActivityDao.getReadingMinutes(memberId);
     }
     @GetMapping(path = "")
-    public List<ReadingActivity> getListOfActivities(@RequestParam String username) throws ReadingActivityNotFoundException{
-        return this.readingActivityDao.getListOfActivities(username);
+    public List<ReadingActivity> getListOfActivities(@RequestParam Long familyId) throws ReadingActivityNotFoundException{
+        return this.readingActivityDao.getListOfActivities(familyId);
     }
 }

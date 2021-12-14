@@ -88,10 +88,12 @@ CREATE TABLE reading_activity (
     reading_minutes int NOT NULL,
     member_id int,
     book_id int,
+    family_id int,
     reader_notes varchar(500),
     CONSTRAINT PK_reading_activity PRIMARY KEY (activity_id),
     CONSTRAINT FK_activity_member FOREIGN KEY (member_id) REFERENCES members(member_id),
-    CONSTRAINT FK_activity_book FOREIGN KEY (book_id) REFERENCES books(book_id)
+    CONSTRAINT FK_activity_book FOREIGN KEY (book_id) REFERENCES books(book_id),
+    CONSTRAINT FK_activity_family FOREIGN KEY (family_id) REFERENCES family(family_id)
 );
 
 INSERT INTO users (username,password_hash,role) VALUES ('user','$2a$08$UkVvwpULis18S19S5pZFn.YHPZt3oaqHZnDwqbCW9pft6uFtkXKDC','ROLE_USER');
@@ -116,9 +118,9 @@ VALUES (1001, 12345, 'Will', 'Will Smith', 501),
        (1004, 33333, 'Nature Anatomy', 'Julia Rothman', 502),
        (1005, 44444, 'The Innovators', 'Walter Isaacson', 502);
 
-INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, reader_notes)
-VALUES (21, '12/12/2021', 'audiobook', 60, 103, 1001, 'This was a great book!'),
-        (22, '12/13/2021', 'book', 30, 101, 1004, 'I hated this book!');
+INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_id,family_id, reader_notes)
+VALUES (21, '12/12/2021', 'audiobook', 60, 103, 1001,501, 'This was a great book!'),
+        (22, '12/13/2021', 'book', 30, 101, 1004, 501,'I hated this book!');
 
 
 COMMIT TRANSACTION;

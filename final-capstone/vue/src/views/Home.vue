@@ -47,7 +47,9 @@ export default {
     BookService.getBooks(this.$store.state.user.username).then((r) => {
       this.$store.commit("SET_CURRENT_BOOKS", r.data);
     });
-    ActivityService.getActivities(this.$store.state.user.username).then((r) => {
+    ActivityService.getActivities(
+      this.$store.state.currentFamily.familyId
+    ).then((r) => {
       this.$store.commit("SET_CURRENT_ACTIVITY", r.data);
     });
   },

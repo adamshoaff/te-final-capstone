@@ -9,17 +9,19 @@ public class ReadingActivity {
     private Long readingMinutes;
     private Long memberId;
     private Long bookId;
+    private Long familyId;
     private String readerNotes;
 
     public ReadingActivity () {}
 
-    public ReadingActivity (Long activityId, String activityDate, String readingFormat, Long readingMinutes, Long memberId, Long bookId, String readerNote) {
+    public ReadingActivity (Long activityId, String activityDate, String readingFormat, Long readingMinutes, Long memberId, Long bookId, Long familyId, String readerNotes) {
        this.activityId = activityId;
        this.activityDate = activityDate;
        this.readingFormat= readingFormat;
        this.readingMinutes = readingMinutes;
        this.memberId = memberId;
        this.bookId = bookId;
+       this.familyId = familyId;
        this.readerNotes = readerNotes;
 
     }
@@ -70,6 +72,14 @@ public class ReadingActivity {
 
     public void setBookId(Long bookId) {
         this.bookId = bookId;
+    }
+
+    public Long getFamilyId() {
+        return familyId;
+    }
+
+    public void setFamilyId(Long familyId) {
+        this.familyId = familyId;
     }
 
     public String getReaderNotes() {

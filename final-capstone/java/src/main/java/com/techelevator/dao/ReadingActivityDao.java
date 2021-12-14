@@ -16,7 +16,7 @@ public interface ReadingActivityDao {
 
     Long getReadingMinutes(Long memberId);
 
-    List<ReadingActivity> getListOfActivities(String username);
+    List<ReadingActivity> getListOfActivities(Long familyId);
 
 
 }

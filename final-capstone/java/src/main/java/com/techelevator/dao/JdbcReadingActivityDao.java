@@ -34,10 +34,10 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
 
     @Override
     public ReadingActivity addActivity(ReadingActivity activityToAdd, Long memberId) {
-        String sql = "INSERT INTO reading_activity (reading_format, reading_minutes, member_id, book_Id, reader_notes)" +
-                " VALUES (?, ?, ?, ?, ?) RETURNING activity_id;";
+        String sql = "INSERT INTO reading_activity (reading_format, reading_minutes, member_id, book_Id, family_id,reader_notes)" +
+                " VALUES (?, ?, ?, ?, ?, ?) RETURNING activity_id;";
         Long activityId = jdbcTemplate.queryForObject(sql, Long.class, activityToAdd.getReadingFormat(),
-                activityToAdd.getReadingMinutes(), memberId, activityToAdd.getBookId(), activityToAdd.getReaderNotes());
+                activityToAdd.getReadingMinutes(), memberId, activityToAdd.getBookId(),activityToAdd.getFamilyId(), activityToAdd.getReaderNotes());
 
         return getActivity(activityId);
 }
@@ -64,15 +64,14 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
     }
 
     @Override
-    public List<ReadingActivity> getListOfActivities(String username) {
+    public List<ReadingActivity> getListOfActivities(Long familyId) {
         List<ReadingActivity> activities = new ArrayList<>();
         String sql = "SELECT *" +
                 " FROM reading_activity" +
                 " JOIN members ON reading_activity.member_id = members.member_id" +
                 " JOIN family ON members.family_id = family.family_id" +
-                " JOIN users ON members.user_id = users.user_id" +
-                " WHERE users.username = ?";
-        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, username);
+                " WHERE family.family_id = ?";
+        SqlRowSet results = jdbcTemplate.queryForRowSet(sql, familyId);
         while (results.next()) {
             ReadingActivity newActivity = mapRowToReadingActivity(results);
             activities.add(newActivity);
@@ -88,6 +87,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
         activity.setReadingMinutes(results.getLong("reading_minutes"));
         activity.setMemberId(results.getLong("member_id"));
         activity.setBookId(results.getLong("book_id"));
+        activity.setFamilyId(results.getLong("family_id"));
         activity.setReaderNotes(results.getString("reader_notes"));
         return activity;
     }
