@@ -6,29 +6,49 @@
       v-for="activity in activities"
       v-bind:key="activity.activityId"
     >
-      {{ activity.readingMinutes }} minutes - {{ activity.readingFormat }}
+      <span class="bookTitle"> {{ findBook(activity.bookId) }}</span>
+      <span class="readingMinutes">
+        | {{ activity.readingMinutes }} minutes
+      </span>
+      <span class="readingFormat"> | {{ activity.readingFormat }}</span>
     </div>
   </div>
 </template>
 
 <script>
-import ActivityService from "@/services/ActivityService.js";
+//import ActivityService from "@/services/ActivityService.js";
 export default {
   name: "activity-info",
   data() {
-    return {
-      activities: [],
-    };
+    return {};
   },
   created() {
-    let activityPromise = ActivityService.getActivities(
-      this.$store.state.user.username,
-      this.$store.state.currentFamily.familyId
-    );
-    console.log(this.$store.state.currentFamily.familyId);
-    activityPromise.then((response) => {
-      this.activities = response.data;
-    });
+    // let activityPromise = ActivityService.getActivities(
+    //   this.$store.state.currentFamily.familyId
+    // );
+    // console.log(this.$store.state.currentFamily.familyId);
+    // activityPromise.then((response) => {
+    //   this.activities = response.data;
+    // });
+  },
+  computed: {
+    activities() {
+      return this.$store.state.currentActivity;
+    },
+    books() {
+      return this.$store.state.currentBook;
+    },
+  },
+  methods: {
+    findBook(bookId) {
+      let foundBook = this.$store.state.currentBooks.find(
+        (book) => bookId == book.bookId
+      );
+      if (foundBook == undefined) {
+        return "Book not registered to family or not found.";
+      }
+      return foundBook.title;
+    },
   },
 };
 </script>

@@ -21,7 +21,7 @@ export default new Vuex.Store({
     currentFamily: {},
     currentMember: {},
     members: {},
-    currentBooks: {},
+    currentBooks: [],
     currentActivity: {},
     token: currentToken || '',
     user: currentUser || {}

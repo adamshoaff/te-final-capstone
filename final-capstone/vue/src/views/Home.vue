@@ -4,19 +4,25 @@
     <p>Welcome to your dashboard!</p>
     <div class="family-card">
       <family-info />
-      <router-link :to="{ name: 'create-new-member' }">
+      <router-link
+        :to="{ name: 'create-new-member' }"
+        class="create-new-member"
+      >
         Add new Member
       </router-link>
     </div>
     <div class="book-card">
       <book-info />
-      <router-link :to="{ name: 'create-new-book' }">
+      <router-link :to="{ name: 'create-new-book' }" class="create-new-book">
         Add new Book
       </router-link>
     </div>
     <div class="activity-card">
       <activity-info />
-      <router-link :to="{ name: 'create-new-activity' }">
+      <router-link
+        :to="{ name: 'create-new-activity' }"
+        class="create-new-activity"
+      >
         Add new Activity
       </router-link>
     </div>
@@ -43,14 +49,15 @@ export default {
         (m) => m.userid == this.$store.state.user.userid
       );
       this.$store.commit("SET_CURRENT_MEMBER", member);
+
+      ActivityService.getActivities(
+        this.$store.state.currentFamily.familyId
+      ).then((r) => {
+        this.$store.commit("SET_CURRENT_ACTIVITY", r.data);
+      });
     });
     BookService.getBooks(this.$store.state.user.username).then((r) => {
       this.$store.commit("SET_CURRENT_BOOKS", r.data);
-    });
-    ActivityService.getActivities(
-      this.$store.state.currentFamily.familyId
-    ).then((r) => {
-      this.$store.commit("SET_CURRENT_ACTIVITY", r.data);
     });
   },
 };

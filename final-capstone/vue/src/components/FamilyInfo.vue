@@ -2,8 +2,7 @@
   <div>
     <h1>My Family Members</h1>
     <div class="family" v-for="member in family.members" v-bind:key="member.id">
-      {{ member.firstName }}
-      {{ member.lastName }}
+      <span class="firstName">{{ member.firstName }}</span>
     </div>
   </div>
 </template>
@@ -52,8 +51,6 @@ export default {
     );
     familyPromise.then((response) => {
       this.family = response.data;
-      //need to push this data into the store (look at book)
-      //Vuex
       this.$store.commit("SET_CURRENT_FAMILY", response.data);
     });
   },

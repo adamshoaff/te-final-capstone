@@ -2,9 +2,9 @@
   <div>
     <h1>My Family's Books</h1>
     <div class="books" v-for="book in books" v-bind:key="book.bookId">
-      {{ book.title }} - {{ book.author }}
-
-      {{ book.isbn }}
+      <span class="bookTitle">{{ book.title }}</span>
+      <span class="by"> by </span>
+      <span class="bookAuthor">{{ book.author }}</span>
     </div>
   </div>
 </template>

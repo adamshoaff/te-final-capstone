@@ -136,7 +136,7 @@ export default {
     addActivity() {
       ActivityService.addActivity(this.newActivity, this.newActivity.memberId)
         .then((response) => {
-          if (response.status === 200) {
+          if (response.status === 200 || response.status === 201) {
             this.$router.push("/");
           }
         })

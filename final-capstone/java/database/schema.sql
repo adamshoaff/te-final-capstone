@@ -119,8 +119,8 @@ VALUES (1001, 12345, 'Will', 'Will Smith', 501),
        (1005, 44444, 'The Innovators', 'Walter Isaacson', 502);
 
 INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_id,family_id, reader_notes)
-VALUES (21, '12/12/2021', 'audiobook', 60, 103, 1001,501, 'This was a great book!'),
-        (22, '12/13/2021', 'book', 30, 101, 1004, 501,'I hated this book!');
+VALUES (21, '12/12/2021', 'Audiobook', 60, 103, 1001,501, 'This was a great book!'),
+        (22, '12/13/2021', 'Paperback', 30, 101, 1002, 501,'I hated this book!');
 
 
 COMMIT TRANSACTION;

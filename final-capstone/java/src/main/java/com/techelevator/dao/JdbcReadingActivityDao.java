@@ -22,7 +22,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
     @Override
     public ReadingActivity getActivity(Long activityId) {
         ReadingActivity activity = null;
-        String sql = "SELECT activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, reader_notes" +
+        String sql = "SELECT activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, family_id, reader_notes" +
                 " FROM reading_activity" +
                 " WHERE reading_activity.activity_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, activityId);
