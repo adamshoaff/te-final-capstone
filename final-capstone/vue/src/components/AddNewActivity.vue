@@ -21,17 +21,18 @@
           v-model="newActivity.memberName"
         />
       </div>
-
+<div>
+  <label for="book-title">Book Title:</label>
       <select id="dropdown" v-model="newActivity.bookTitle">
         <option
           v-for="book in $store.state.currentBooks"
           v-bind:key="book.bookTitle"
-          :value="bookId"
+          value="bookId"
         >
           {{ book.Title }}
         </option>
       </select>
-
+</div>
       <div class="bookTitle">
         <label for="bookTitle">Book Title: </label>
         <input
