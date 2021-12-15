@@ -1,7 +1,9 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
-    <p>Welcome to your dashboard!</p>
+    <div class="welcome">
+    <h1>Welcome to your dashboard!</h1>
+    
+    </div>
     <div class="family-card">
       <family-info />
       <router-link
@@ -62,4 +64,28 @@ export default {
   },
 };
 </script>
-<style></style>
+<style>
+.welcome {
+  grid-area: welcome-a;
+}
+.my-family {
+  grid-area:my-family-a;
+}
+.family-book {
+  grid-area:family-book-a;
+
+}
+.activity {
+  grid-area:activity-a;
+}
+.home {
+display: grid;
+grid-gap: 1rem 10rem 1rem 10rem;
+grid-template-rows:1fr 1fr 1fr;
+justify-items:center;
+grid-template-areas: 
+"welcome-a welcome-a welcome-a"
+"my-family-a family-book-a activity-a"
+
+}
+</style>

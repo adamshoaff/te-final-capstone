@@ -7,3 +7,8 @@
     <router-view />
   </div>
 </template>
+<!--<style scoped>
+body{
+  color: red;
+}
+</style> -->

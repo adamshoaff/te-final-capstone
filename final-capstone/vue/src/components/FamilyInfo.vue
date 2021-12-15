@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>My Family Members</h1>
+  <div class="my-family">
+    <h2>My Family Members</h2>
     <div class="family" v-for="member in family.members" v-bind:key="member.id">
       <span class="firstName">{{ member.firstName }}</span>
     </div>
@@ -58,4 +58,12 @@ export default {
 </script>
 
 <style>
+.my-family {
+  /* display: flex; */
+  border: 1px solid silver;
+  padding:20px;
+  
+
+}
+
 </style>

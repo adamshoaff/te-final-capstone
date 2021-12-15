@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>My Family's Books</h1>
+  <div class="family-book">
+    <h2>My Family's Books</h2>
     <div class="books" v-for="book in books" v-bind:key="book.bookId">
       <span class="bookTitle">{{ book.title }}</span>
       <span class="by"> by </span>
@@ -29,4 +29,8 @@ export default {
 </script>
 
 <style>
+.family-book {
+  border: 1px solid silver;
+  padding:20px;
+}
 </style>

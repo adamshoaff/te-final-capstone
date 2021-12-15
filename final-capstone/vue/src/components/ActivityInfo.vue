@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h1>Last Reading Activities:</h1>
+  <div class="activity">
+    <h2>Last Reading Activities</h2>
     <div
       class="activities"
       v-for="activity in activities"
@@ -54,4 +54,8 @@ export default {
 </script>
 
 <style>
+.activity{
+border: 1px solid silver;
+  padding:20px;
+}
 </style>
