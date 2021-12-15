@@ -9,13 +9,17 @@
         :to="{ name: 'create-new-member' }"
         class="create-new-member"
       >
+      <button class="button">
         Add new Member
+        </button>
       </router-link>
     </div>
     <div class="book-card">
       <book-info />
       <router-link :to="{ name: 'create-new-book' }" class="create-new-book">
+        <button class="button">
         Add new Book
+        </button>
       </router-link>
     </div>
     <div class="activity-card">
@@ -24,7 +28,9 @@
         :to="{ name: 'create-new-activity' }"
         class="create-new-activity"
       >
+      <button class="button">
         Add new Activity
+        </button>
       </router-link>
     </div>
   </div>
@@ -64,6 +70,11 @@ export default {
 };
 </script>
 <style>
+.button {
+  border-radius: 50px;
+  background-color:#31c3e6;
+  margin-top:20px;
+}
 .welcome {
   grid-area: welcome-a;
   text-align: center;

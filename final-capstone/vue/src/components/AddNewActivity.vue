@@ -1,6 +1,6 @@
 <template>
   <form v-on:submit.prevent>
-    <div class="activity-form-element">
+    <div  class="activity-form-element">
       <div class="member-dropdown">
         <label for="member-dropdown">Member Name: </label>
         <select id="dropdown" v-model="newActivity.memberId">
@@ -154,5 +154,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+div {
+padding:0;
+}
 </style>
