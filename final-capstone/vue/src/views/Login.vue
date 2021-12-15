@@ -1,5 +1,13 @@
 <template>
-  <div id="login" class="text-center">  
+
+  <div id="login" class="text-center">
+  <!-- <div>
+    <img src="../assets/Book-Icon"/>
+    </div> -->
+
+    <!-- <div class="logo">
+      <h1>Curl Up Club</h1>
+      </div> -->
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Welcome Back!</h1>
       <div
@@ -77,6 +85,22 @@ export default {
 
 
 <style>
+/* @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+.logo {
+
+  font-family: 'Lobster', cursive;
+  display: grid;
+  /* justify-content: center; */
+  /* align-content: left;
+  height:100px;
+  border-radius:10px;
+  border:1px solid (rgb216, 214,214);
+  width: 800px;
+  background-color: rgba(255, 255,255,0);
+  margin: auto 0;
+  padding:20px 20px 20px 30px;
+
+} */ 
 * {
   font-family: Arial, Helvetica, sans-serif;
 }

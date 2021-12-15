@@ -9,13 +9,15 @@
         :to="{ name: 'create-new-member' }"
         class="create-new-member"
       >
-        Add new Member
+        <button class="button">Add new Member</button>
       </router-link>
     </div>
     <div class="book-card">
       <book-info />
       <router-link :to="{ name: 'create-new-book' }" class="create-new-book">
+        <button class="button">
         Add new Book
+        </button>
       </router-link>
     </div>
     <div class="activity-card">
@@ -24,7 +26,9 @@
         :to="{ name: 'create-new-activity' }"
         class="create-new-activity"
       >
+      <button class="button">
         Add new Activity
+      </button>
       </router-link>
     </div>
   </div>
@@ -64,6 +68,12 @@ export default {
 };
 </script>
 <style>
+.button {
+  margin-top:10px;
+  padding: 5px;
+  border-radius: 50px;
+  background-color:#fedb6d;
+}
 .welcome {
   grid-area: welcome-a;
   text-align: center;
@@ -76,23 +86,16 @@ export default {
 }
 .my-family {
   grid-area: my-family-a;
-  background-color: white;
-  color: #302d59;
 }
 .family-book {
   grid-area: family-book-a;
-  background-color: white;
-  color: #302d59;
 }
 .activity {
   grid-area: activity-a;
-  background-color: white;
-  color: #302d59;
 }
 .home {
   display: grid;
-  background-color: #fedb6d;
-  grid-gap: 0;
+  grid-gap: 1rem 10rem 1rem 10rem;
   grid-template-rows: 1fr 1fr 1fr;
   justify-items: center;
   grid-template-areas:
