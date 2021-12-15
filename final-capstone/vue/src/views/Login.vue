@@ -124,9 +124,11 @@ div {
   padding: 30px 25px 25px 35px;
 }
 
-body {
+.text-center {
+  height: 100vh;
+  background-repeat: no-repeat; 
   background-image: url('../assets/family.jpg');
-  background-size: 100%;
+ background-size: 100%; 
 }
 
 </style>
