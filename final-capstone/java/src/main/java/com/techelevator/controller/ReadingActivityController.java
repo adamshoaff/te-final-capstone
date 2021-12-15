@@ -44,12 +44,13 @@ public class ReadingActivityController {
 
 
     //added endpoint so that we can toggle whether or not a book is complete
-    @PutMapping(path="/complete")
-    public void markBookCompleted(@RequestParam Long activityId) {
-        this.readingActivityDao.markBookCompleted(activityId);
-    }
-    @PutMapping(path="/incomplete")
-    public void markBookIncomplete(@RequestParam Long activityId) {
-        this.readingActivityDao.markBookIncomplete(activityId);
-    }
+    //WE ARE NO LONGER USING THESE UNTIL WE CAN TOGGLE COMPLETING A BOOK:
+//    @PutMapping(path="/complete")
+//    public void markBookCompleted(@RequestParam Long activityId) {
+//        this.readingActivityDao.markBookCompleted(activityId);
+//    }
+//    @PutMapping(path="/incomplete")
+//    public void markBookIncomplete(@RequestParam Long activityId) {
+//        this.readingActivityDao.markBookIncomplete(activityId);
+//    }
 }

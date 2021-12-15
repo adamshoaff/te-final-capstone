@@ -22,7 +22,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
     @Override
     public ReadingActivity getActivity(Long activityId) {
         ReadingActivity activity = null;
-        String sql = "SELECT activity_id, activity_date, reading_format, reading_minutes,is_complete, member_id, book_id, family_id, reader_notes" +
+        String sql = "SELECT activity_id, activity_date, reading_format, reading_minutes, member_id, book_id, family_id, reader_notes" +
                 " FROM reading_activity" +
                 " WHERE reading_activity.activity_id = ?;";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, activityId);
@@ -34,10 +34,10 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
 
     @Override
     public ReadingActivity addActivity(ReadingActivity activityToAdd, Long memberId) {
-        String sql = "INSERT INTO reading_activity (reading_format, reading_minutes,is_completed, member_id, book_Id, family_id,reader_notes)" +
-                " VALUES (?, ?, ?, ?, ?, ?,?) RETURNING activity_id;";
+        String sql = "INSERT INTO reading_activity (reading_format, reading_minutes, member_id, book_Id, family_id,reader_notes)" +
+                " VALUES (?, ?, ?, ?, ?,?) RETURNING activity_id;";
         Long activityId = jdbcTemplate.queryForObject(sql, Long.class, activityToAdd.getReadingFormat(),
-                activityToAdd.getReadingMinutes(), memberId,activityToAdd.isCompleted(), activityToAdd.getBookId(),activityToAdd.getFamilyId(), activityToAdd.getReaderNotes());
+                activityToAdd.getReadingMinutes(), memberId, activityToAdd.getBookId(),activityToAdd.getFamilyId(), activityToAdd.getReaderNotes());
 
         return getActivity(activityId);
 }
@@ -99,7 +99,6 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
         activity.setMemberId(results.getLong("member_id"));
         activity.setBookId(results.getLong("book_id"));
         activity.setFamilyId(results.getLong("family_id"));
-        activity.setCompleted(results.getBoolean("is_completed"));
         activity.setReaderNotes(results.getString("reader_notes"));
         return activity;
     }
