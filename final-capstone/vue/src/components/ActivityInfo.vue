@@ -5,18 +5,22 @@
       class="activities"
       v-for="activity in activities"
       v-bind:key="activity.activityId"
+      v-bind:class="{'completed': activity.completed, 'incomplete': !activity.completed}"
     >
+      <span class="memberName">{{ findMember(activity.memberId) }} </span>
+
       <span class="bookTitle"> {{ findBook(activity.bookId) }}</span>
       <span class="readingMinutes">
         | {{ activity.readingMinutes }} minutes
       </span>
       <span class="readingFormat"> | {{ activity.readingFormat }}</span>
+      <button class="markCompleted" @click="toggleCompleted(activity.activityId, activity.completed)">{{ activity.completed ? "Mark Incomplete" : "Mark Completed" }}</button>
     </div>
   </div>
 </template>
 
 <script>
-//import ActivityService from "@/services/ActivityService.js";
+import ActivityService from "@/services/ActivityService.js";
 export default {
   name: "activity-info",
   data() {
@@ -49,14 +53,35 @@ export default {
       }
       return foundBook.title;
     },
+    findMember(memberId) {
+      let foundMember = this.$store.state.currentFamily.members.find(
+        (member) => memberId == member.memberId
+      );
+      if (foundMember == undefined) {
+        return "Unknown member";
+      }
+      return foundMember.firstName;
+    },
+    toggleCompleted(activityId, completed){
+      if(completed == false){
+      ActivityService.markComplete(activityId);
+      } else{
+        ActivityService.markIncomplete(activityId);
+      }
+      this.$store.commit('TOGGLE_COMPLETED', activityId);
+    }
+
   },
 };
 </script>
 
 <style>
-.activity{
+.completed{
+  text-decoration: line-through;
+}
+.activity {
   border-radius: 15px;
   border: 1px solid silver;
-  padding:20px;
+  padding: 20px;
 }
 </style>

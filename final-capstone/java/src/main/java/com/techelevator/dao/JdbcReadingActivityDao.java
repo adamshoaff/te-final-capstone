@@ -70,13 +70,24 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
                 " FROM reading_activity" +
                 " JOIN members ON reading_activity.member_id = members.member_id" +
                 " JOIN family ON members.family_id = family.family_id" +
-                " WHERE family.family_id = ?";
+                " WHERE family.family_id = ? ORDER BY activity_date desc";
         SqlRowSet results = jdbcTemplate.queryForRowSet(sql, familyId);
         while (results.next()) {
             ReadingActivity newActivity = mapRowToReadingActivity(results);
             activities.add(newActivity);
         }
         return activities;
+    }
+
+
+    //we added is_completed column to the database schema and isCompleted boolean to Read Activity model - Tay
+    public void markBookCompleted(Long activityId){
+        String sql = "UPDATE reading_activity SET is_completed = true WHERE activity_id = ?;";
+        jdbcTemplate.update(sql, activityId);
+    }
+    public void markBookIncomplete(Long activityId){
+        String sql = "UPDATE reading_activity SET is_completed = false WHERE activity_id = ?;";
+        jdbcTemplate.update(sql, activityId);
     }
 
     private ReadingActivity mapRowToReadingActivity(SqlRowSet results) {
@@ -88,6 +99,7 @@ public class JdbcReadingActivityDao implements ReadingActivityDao {
         activity.setMemberId(results.getLong("member_id"));
         activity.setBookId(results.getLong("book_id"));
         activity.setFamilyId(results.getLong("family_id"));
+        activity.setCompleted(results.getBoolean("is_completed"));
         activity.setReaderNotes(results.getString("reader_notes"));
         return activity;
     }

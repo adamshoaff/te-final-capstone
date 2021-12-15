@@ -18,5 +18,9 @@ public interface ReadingActivityDao {
 
     List<ReadingActivity> getListOfActivities(Long familyId);
 
+    void markBookCompleted(Long activityId);
+
+   void markBookIncomplete(Long activityId);
+
 
 }

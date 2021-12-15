@@ -10,6 +10,7 @@ public class ReadingActivity {
     private Long memberId;
     private Long bookId;
     private Long familyId;
+    private boolean isCompleted;
     private String readerNotes;
 
     public ReadingActivity () {}
@@ -80,6 +81,13 @@ public class ReadingActivity {
 
     public void setFamilyId(Long familyId) {
         this.familyId = familyId;
+    }
+
+    public boolean isCompleted() {
+        return isCompleted;
+    }
+    public void setCompleted(boolean completed) {
+        isCompleted = completed;
     }
 
     public String getReaderNotes() {

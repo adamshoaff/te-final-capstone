@@ -100,6 +100,7 @@
         />
       </div> -->
 
+    
       <div class="readingNotes">
         <label for="readingNotes">Any Notes? </label>
         <textarea
@@ -134,6 +135,7 @@ export default {
   },
   methods: {
     addActivity() {
+
       ActivityService.addActivity(this.newActivity, this.newActivity.memberId)
         .then((response) => {
           if (response.status === 200 || response.status === 201) {

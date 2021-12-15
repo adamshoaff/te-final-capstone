@@ -83,9 +83,10 @@ CREATE TABLE books (
 );
 CREATE TABLE reading_activity (
     activity_id int DEFAULT nextval ('seq_activity_id'::regclass) NOT NULL,
-    activity_date date default NOW(),
+    activity_date timestamp default NOW(),
     reading_format varchar(50) NOT NULL,
     reading_minutes int NOT NULL,
+    is_completed boolean default false,
     member_id int,
     book_id int,
     family_id int,

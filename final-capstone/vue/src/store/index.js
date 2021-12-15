@@ -63,6 +63,12 @@ export default new Vuex.Store({
     },
     SET_CURRENT_MEMBER(state, data) {
       state.currentMember = data;
+    },
+    TOGGLE_COMPLETED(state, activityId){
+     let foundActivity =  state.currentActivity.find((activity) => 
+          activityId == activity.activityId
+      )
+      foundActivity.completed = !foundActivity.completed;
     }
 
 
