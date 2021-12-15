@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <div class="welcome">
-    <h1>Welcome to your Dashboard!</h1>
-    
+      <h1>Welcome to your Dashboard!</h1>
     </div>
     <div class="family-card">
       <family-info />
@@ -67,25 +66,37 @@ export default {
 <style>
 .welcome {
   grid-area: welcome-a;
+  text-align: center;
+  padding: 40px 0;
+  height: 75px;
+  border-radius: 15px;
+  border: 1px solid rgb(216, 214, 214);
+  width: 500px;
+  background-color: white;
 }
 .my-family {
-  grid-area:my-family-a;
+  grid-area: my-family-a;
+  background-color: white;
+  color: #302d59;
 }
 .family-book {
-  grid-area:family-book-a;
-
+  grid-area: family-book-a;
+  background-color: white;
+  color: #302d59;
 }
 .activity {
-  grid-area:activity-a;
+  grid-area: activity-a;
+  background-color: white;
+  color: #302d59;
 }
 .home {
-display: grid;
-grid-gap: 1rem 10rem 1rem 10rem;
-grid-template-rows:1fr 1fr 1fr;
-justify-items:center;
-grid-template-areas: 
-"welcome-a welcome-a welcome-a"
-"my-family-a family-book-a activity-a"
-
+  display: grid;
+  background-color: #fedb6d;
+  grid-gap: 0;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+  grid-template-areas:
+    "welcome-a welcome-a welcome-a"
+    "my-family-a family-book-a activity-a";
 }
 </style>
