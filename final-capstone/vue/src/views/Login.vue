@@ -1,7 +1,9 @@
 <template>
-  <div id="login" class="text-center">
+  <div id="login" class="text-center">  
+ <!-- where can this live <img src="img/family.jpg" alt="Family Reading"> 
+ we want it to take up the whole page -->
     <form class="form-signin" @submit.prevent="login">
-      <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
+      <h1 class="h3 mb-3 font-weight-normal">Welcome Back!</h1>
       <div
         class="alert alert-danger"
         role="alert"
@@ -12,7 +14,7 @@
         role="alert"
         v-if="this.$route.query.registration"
       >Thank you for registering, please sign in.</div>
-      <label for="username" class="sr-only">Username</label>
+      <label for="username" class="sr-only"></label>
       <input
         type="text"
         id="username"
@@ -22,7 +24,7 @@
         required
         autofocus
       />
-      <label for="password" class="sr-only">Password</label>
+      <label for="password" class="sr-only"></label>
       <input
         type="password"
         id="password"
@@ -74,3 +76,24 @@ export default {
   }
 };
 </script>
+
+
+<style>
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+form > h1 {
+  letter-spacing: .5px;
+}
+
+div > form {
+  display: grid;
+  align-content: space-between;
+  height: 275px;
+  border-radius: 15px;
+  border: 1px solid rgb(216, 214, 214);
+  width: 200px;
+}
+
+</style>

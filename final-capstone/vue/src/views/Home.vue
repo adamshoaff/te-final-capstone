@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="welcome">
-    <h1>Welcome to your dashboard!</h1>
+    <h1>Welcome to your Dashboard!</h1>
     
     </div>
     <div class="family-card">
