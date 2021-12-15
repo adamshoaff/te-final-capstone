@@ -1,7 +1,8 @@
 <template>
   <div id="login" class="text-center">  
  <!-- where can this live <img src="img/family.jpg" alt="Family Reading"> 
- we want it to take up the whole page -->
+ we want it to take up the whole page 
+ I don't want to put a header inside of a div -->
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Welcome Back!</h1>
       <div
