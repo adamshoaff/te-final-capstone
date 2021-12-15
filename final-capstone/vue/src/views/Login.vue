@@ -1,8 +1,5 @@
 <template>
   <div id="login" class="text-center">  
- <!-- where can this live <img src="img/family.jpg" alt="Family Reading"> 
- we want it to take up the whole page 
- I don't want to put a header inside of a div -->
     <form class="form-signin" @submit.prevent="login">
       <h1 class="h3 mb-3 font-weight-normal">Welcome Back!</h1>
       <div
@@ -85,16 +82,27 @@ export default {
 }
 
 form > h1 {
-  letter-spacing: .5px;
+  margin: 3px;
 }
 
 div > form {
   display: grid;
   align-content: space-between;
-  height: 275px;
+  height: 310px;
   border-radius: 15px;
   border: 1px solid rgb(216, 214, 214);
   width: 200px;
+  background-color: white;
+  padding: 40px 40px 40px 20px;
+}
+
+div {
+  padding: 30px 25px 25px 35px;
+}
+
+body {
+  background-image: url('../assets/family.jpg');
+  background-size: 100%;
 }
 
 </style>
