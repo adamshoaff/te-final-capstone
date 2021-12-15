@@ -59,7 +59,7 @@ export default {
 
 <style>
 .my-family {
-  /* display: flex; */
+  
   border: 1px solid silver;
   padding:20px;
   
