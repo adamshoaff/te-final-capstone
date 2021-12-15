@@ -30,6 +30,7 @@ export default {
 
 <style>
 .family-book {
+  border-radius: 15px;
   border: 1px solid silver;
   padding:20px;
 }
