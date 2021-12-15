@@ -80,6 +80,7 @@ export default {
   text-decoration: line-through;
 }
 .activity {
+  background-color:white;
   border-radius: 15px;
   border: 1px solid silver;
   padding: 20px;
