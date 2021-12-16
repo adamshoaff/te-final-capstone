@@ -121,13 +121,13 @@ div > form {
 }
 
 div {
-  padding: 30px 25px 25px 35px;
+  padding: 130px 25px 25px 35px;
 }
 
 .text-center {
   height: 100vh;
   background-repeat: no-repeat; 
-  background-image: url('../assets/family.jpg');
+  background-image: url('../assets/logo_w_fam.png');
  background-size: 100%; 
 }
 
