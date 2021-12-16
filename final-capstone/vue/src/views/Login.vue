@@ -121,7 +121,7 @@ div > form {
 }
 
 div {
-  padding: 130px 25px 25px 35px;
+  padding: 10px 18px 21px 30px;
 }
 
 .text-center {

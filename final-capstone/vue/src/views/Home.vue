@@ -109,8 +109,8 @@ export default {
   background-color: #fedb6d;
   grid-gap: 1px;
  grid-template-columns:1fr 1fr 1fr ; 
-  grid-template-rows: 2fr 5fr 1fr;
-  /* justify-items: center; */
+  /* grid-template-rows: 2fr 5fr 1fr; */
+  justify-items: center;
   grid-template-areas:
    "welcome-a welcome-a welcome-a" 
     "my-family-a family-book-a activity-a";
