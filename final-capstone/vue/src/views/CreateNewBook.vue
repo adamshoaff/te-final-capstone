@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="new-book">
     <h1>Add a new Book here:</h1>
 
     <add-new-book />
@@ -13,5 +13,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.new-book {
+  background-color:#f06a56;
+}
 </style>

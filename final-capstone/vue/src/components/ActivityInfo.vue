@@ -11,9 +11,9 @@
 
       <span class="bookTitle"> {{ findBook(activity.bookId) }}</span>
       <span class="readingMinutes">
-        | {{ activity.readingMinutes }} minutes
+        for {{ activity.readingMinutes }} minutes
       </span>
-      <span class="readingFormat"> | {{ activity.readingFormat }}</span>
+      <span class="readingFormat"> via {{ activity.readingFormat }}</span>
       <!-- <button class="markCompleted" @click="toggleCompleted(activity.activityId, activity.completed)">{{ activity.completed ? "Mark Incomplete" : "Mark Completed" }}</button> -->
     </div>
   </div>

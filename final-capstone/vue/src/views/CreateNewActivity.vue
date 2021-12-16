@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="new-activity">
     <h1>Add new Activity:</h1>
 
     <add-new-activity />
@@ -13,5 +13,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.new-activity {
+  background-color:#302d59;
+}
 </style>

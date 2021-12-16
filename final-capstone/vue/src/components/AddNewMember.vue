@@ -75,4 +75,9 @@ export default {
 div {
 padding:0;
 }
+button {
+  background-color:#fedb6d;
+border-radius: 50px;
+margin-right:40px;
+}
 </style>

@@ -1,7 +1,7 @@
 <template>
   <form v-on:submit.prevent>
     <div  class="activity-form-element">
-      <div class="member-dropdown">
+      <div class="form-element">
         <label for="member-dropdown">Member Name: </label>
         <select id="dropdown" v-model="newActivity.memberId">
           <option
@@ -23,7 +23,7 @@
           v-model="newActivity.memberName"
         />
       </div> -->
-      <div>
+      <div class="form-element">
         <label for="book-title">Book Title:</label>
         <select id="dropdown" v-model="newActivity.bookId">
           <option
@@ -44,7 +44,7 @@
           v-model="newActivity.bookTitle"
         /> 
       </div> -->
-      <div class="readingFormat">
+      <div class="form-element">
         <label for="readingFormat">Which format?</label>
 
         <select
@@ -73,7 +73,7 @@
         />
       </div> -->
 
-      <div class="readingMinutes">
+      <div class="form-element">
         <label for="readingMinutes">How many minutes did you read?</label>
         <select
           name="readingMinutes"
@@ -101,7 +101,7 @@
       </div> -->
 
     
-      <div class="readingNotes">
+      <div class="form-element">
         <label for="readingNotes">Any Notes? </label>
         <textarea
           name="readingNotes"
@@ -157,5 +157,14 @@ export default {
 <style scoped>
 div {
 padding:0;
+}
+button {
+  background-color:#fedb6d;
+border-radius: 50px;
+margin-right:40px;
+margin-top:20px;
+}
+.form-element {
+  margin-bottom: 20px;
 }
 </style>

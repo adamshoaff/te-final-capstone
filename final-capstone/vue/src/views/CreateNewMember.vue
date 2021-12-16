@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="new-member">
      <h1> Create New Member</h1>
     
      <add-new-member/>
@@ -16,6 +16,8 @@ components:{
 }
 </script>
 
-<style>
-
+<style scoped>
+.new-member {
+  background-color:#31c3e6;
+} 
 </style>
