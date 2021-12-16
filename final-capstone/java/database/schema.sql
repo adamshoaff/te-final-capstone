@@ -107,21 +107,20 @@ VALUES (501, 'banksfamily'),(502,'gilmore'), (503,'admin');
 
 INSERT INTO members (member_id, user_id, family_id, first_name, last_name, member_type)
 VALUES (101, 4, 501, 'Phil', 'Banks', 'Parent'),
-       (102, null, 501, 'Vivanne', 'Banks', 'Parent'),
+       (102, null, 501, 'Vivian', 'Banks', 'Parent'),
        (103, null, 501, 'Carlton', 'Banks', 'Child'),
        (104, 3, 502, 'Lorelai', 'Gilmore', 'Parent'),
        (105, null, 502, 'Rory', 'Gilmore', 'Child');
 
 INSERT INTO books (book_id, isbn, title, author, family_id)
-VALUES (1001, 12345, 'Will', 'Will Smith', 501),
+VALUES
        (1002, 23456, 'The Splendid and The Vile', 'Erik Larson', 501),
        (1003, 22222, 'The Amber Spyglass', 'Philip Pullman', 501),
        (1004, 33333, 'Nature Anatomy', 'Julia Rothman', 502),
        (1005, 44444, 'The Innovators', 'Walter Isaacson', 502);
 
 INSERT INTO reading_activity (activity_id, activity_date, reading_format, reading_minutes, member_id, book_id,family_id, reader_notes)
-VALUES (21, '12/12/2021', 'Audiobook', 60, 103, 1001,501, 'This was a great book!'),
-        (22, '12/13/2021', 'Paperback', 30, 101, 1002, 501,'I hated this book!');
+VALUES (22, '12/13/2021', 'Paperback', 30, 101, 1002, 501,'I hated this book!');
 
 
 COMMIT TRANSACTION;

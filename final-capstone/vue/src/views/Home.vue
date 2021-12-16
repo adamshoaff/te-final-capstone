@@ -127,4 +127,7 @@ div.book-card {
 div.activity-card {
   padding:30px 25px 25px 30px;
 }
+h1{
+  color:#302d59
+}
 </style>

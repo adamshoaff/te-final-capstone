@@ -53,7 +53,7 @@
           v-model="newActivity.readingFormat"
         >
           <option value="Digital">Digital</option>
-          <option value="Paper">Paper</option>
+          <option value="Paperback">Paperback</option>
           <option value="Audiobook">Audiobook</option>
           <option value="ReadAloud-Listener">Read Aloud (Listener)</option>
           <option value="ReadAloud-Reader">Read Aloud (Reader)</option>
