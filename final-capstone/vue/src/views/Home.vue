@@ -86,28 +86,42 @@ export default {
   background-color: white;
 }
 .my-family {
+ 
   grid-area: my-family-a;
   background-color: white;
   color: #302d59;
 }
 .family-book {
+ 
   grid-area: family-book-a;
   background-color: white;
   color: #302d59;
 }
 .activity {
+  
   grid-area: activity-a;
   background-color: white;
   color: #302d59;
 }
 .home {
+  padding:30px 25px 25px 30px;
   display: grid;
   background-color: #fedb6d;
   grid-gap: 1px;
-  grid-template-rows: 1fr 1fr 1fr;
+ grid-template-columns:1fr 1fr 1fr ; 
+  grid-template-rows: 2fr 5fr 1fr;
   justify-items: center;
   grid-template-areas:
-    "welcome-a welcome-a welcome-a"
+   "welcome-a welcome-a welcome-a" 
     "my-family-a family-book-a activity-a";
+}
+div.family-card {
+  padding:30px 25px 25px 30px;
+}
+div.book-card {
+  padding:30px 25px 25px 30px;
+}
+div.activity-card {
+  padding:30px 25px 25px 30px;
 }
 </style>
