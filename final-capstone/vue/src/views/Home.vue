@@ -110,12 +110,15 @@ export default {
   grid-gap: 1px;
  grid-template-columns:1fr 1fr 1fr ; 
   grid-template-rows: 2fr 5fr 1fr;
-  justify-items: center;
+  /* justify-items: center; */
   grid-template-areas:
    "welcome-a welcome-a welcome-a" 
     "my-family-a family-book-a activity-a";
 }
 div.family-card {
+  /* align-items: stretch; */
+  /* background-color:rgba(255,255,255,1); */
+  
   padding:30px 25px 25px 30px;
 }
 div.book-card {

@@ -62,7 +62,7 @@ export default {
   background-color:white;
   /* display: flex; */
   border-radius: 15px;;
-  border: 1px solid silver;
+ border: 1px solid silver; 
   padding:20px;
 }
 

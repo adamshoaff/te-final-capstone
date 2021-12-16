@@ -12,7 +12,7 @@ export default {
 </script>
 
 <style>
-* {
+/* * {
   background-color: white;
-}
+} */
 </style>

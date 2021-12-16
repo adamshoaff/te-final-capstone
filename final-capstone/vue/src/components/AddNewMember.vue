@@ -71,5 +71,8 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+div {
+padding:0;
+}
 </style>
